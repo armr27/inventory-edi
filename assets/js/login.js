@@ -15,11 +15,12 @@ function proses_login() {
 
 }
 
+
 function cek_user(usr, pwd) {
     var link = $('#baseurl').val();
     var base_url = link + 'login/proses_login';
     $("#login").text("Memuat...");
-
+    
     $.ajax({
         type: 'POST',
         data: {
@@ -35,13 +36,48 @@ function cek_user(usr, pwd) {
             } else {
                 pesan('User & Password salah!', 'error', 'false');
                 $("#login").text("Login");
+                
+            }
+        }
+    });
+}
+
+function proses_login_forgot() {
+
+    var email = $("[name='email']").val();
+
+    if (email == "") {
+        validasi('Email masih kosong!', 'warning');
+        return false;
+    } else {
+        cek_emailr(email);
+    }
+
+}
+function cek_email(email, pwd) {
+    var link = $('#baseurl').val();
+    var base_url = link + 'login/proses_login';
+    $("#login").text("Memuat...");
+
+    $.ajax({
+        type: 'POST',
+        data: {
+            email: email
+        },
+        url: base_url,
+        dataType: 'json',
+        success: function(hasil) {
+            if (hasil.respon == 'success') {
+                pesan('Berhasil Login!', 'success', 'true');
+                $("#login").text("Login");
+            } else {
+                pesan('User & Password salah!', 'error', 'false');
+                $("#login").text("Login");
 
             }
         }
     });
-
 }
-
 function logout() {
 
     var base_url = $('#baseurl').val();

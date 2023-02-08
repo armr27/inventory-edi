@@ -44,25 +44,22 @@
                                 <br>
                                 <br>
                                 <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                                    <h1 class="h4 text-gray-900 mb-4">Lupa Password</h1>
                                 </div>
                                 <form class="user">
                                     <div class="form-group">
                                         <input type="text" class="form-control form-control-user"
-                                            id="user" name="user" aria-describedby="usernameHelp"
-                                            placeholder="Username" autocomplete="off">
+                                            id="email" name="email" aria-describedby="usernameHelp"
+                                            placeholder="Email" autocomplete="off">
                                     </div>
-                                    <div class="form-group">
-                                        <input type="password" class="form-control form-control-user"
-                                            id="pwd" name="pwd" placeholder="Password">
-                                    </div>
-                                    <a href="#" onclick="proses_login()" id="login"
+                                    <a href="#" onclick="proses_login_forgot()" id="login"
                                         class="btn btn-primary btn-user btn-block shadow">
-                                        Login
+                                        Reset Password
                                     </a>
                                     <div class="text-center">
-                                        <a href="<?= base_url("login/forgotpassword") ?>">Lupa Password ?</a>
+                                    <a href="<?= base_url("login") ?>" class="text-center">kembali</a>
                                     </div>
+                                    <br>
                                     <br>
                                     <br>
                                     <br>

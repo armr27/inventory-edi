@@ -8,6 +8,7 @@ class Login extends CI_Controller {
     $this->load->helper('url');
     $this->load->helper('download');
 	$this->load->library('pagination');
+	$this->load->library('form_validation');
 	$this->load->helper('cookie');
 	$this->load->model('login_model');
   }
@@ -54,12 +55,46 @@ class Login extends CI_Controller {
 			echo json_encode($respon);
 		}
 
+	
+	}
+	public function proses_forgot()
+	{
+		$username = $this->input->post('user');
+    	$password = $this->input->post('pwd');
+		$email = $this->input->post('email');
+    	$where = array(
+    		'email' => $email
+    	);
+    	$cek = $this->login_model->cek_login($where, 'email')->num_rows();
+    	$data = $this->login_model->cek_login($where, 'email')->row_array();
+    	if ($cek > 0) {
+
+
+			$this->session->set_userdata('login_session',$userdata);
+			
+			$respon = array('respon' => 'success');
+			echo json_encode($respon);
+    	}
+    	else{
+			$respon = array('respon' => 'failed');
+			echo json_encode($respon);
+		}
+
 	}
 
 	public function logout()
 	{
 		$this->session->unset_userdata('login_session');
 		redirect('login');
-		
 	}
+
+	public function forgotPassword()
+	{
+
+			$this->load->view('templates/header_login');
+			$this->load->view('login/forgot');
+			$this->load->view('templates/footer_login');
+			
+		}
+	
 }
