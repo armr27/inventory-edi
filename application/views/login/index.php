@@ -12,39 +12,46 @@
                         <div class="col-lg-6 d-none d-lg-block bg-login-image">
                             <div class="p-5">
                             <br>
-                            <div class="judul">
-                                <center>
-                                    <img width="150px" src="<?= base_url() ?>assets/icon/box.png" alt="">
-                                </center>
-                            </div>
-                                <br>
-                                <div class="spinner">
-                                    <div class="double-bounce1"></div>
-                                    <div class="double-bounce2"></div>
+                                <!-- <div class="judul">
+                                    <center>
+                                        <img width="150px" src="<?= base_url() ?>assets/icon/box.png" alt="">
+                                    </center>
                                 </div>
-                                <div class="judul">
-                                    <hr class="bg-white">
                                     <br>
-                                    <div class="text-center">
-                                        <h1 class="h2 text-white mb-4"><b>APLIKASI</b></h1>
+                                    <div class="spinner">
+                                        <div class="double-bounce1"></div>
+                                        <div class="double-bounce2"></div>
                                     </div>
-                                    <div class="text-center">
-                                        <h1 class="h3 text-white mb-4">INVENTORY BARANG</h1>
-                                    </div>
-                                    <hr class="bg-white">
-                                </div>
-
-
+                                    <div class="judul">
+                                        <hr class="bg">
+                                        <br>
+                                        <div class="text-center">
+                                            <h1 class="h2 text-dark mb-4"><b>APLIKASI</b></h1>
+                                        </div>
+                                        <div class="text-center">
+                                            <h1 class="h3 text-dark mb-4">INVENTORY BARANG</h1>
+                                        </div>
+                                        <hr class="bg-dark">
+                                    </div> -->
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="p-5">
-                                <br>
-                                <br>
-                                <br>
-                                <br>
-                                <div class="text-center">
-                                    <h1 class="h4 text-gray-900 mb-4">Login</h1>
+                            <div class="judul">
+                            </div>
+                            <div class="judul">
+                                    <hr class="bg-dark">
+                                    <center>
+                                    <img width="250px" src="<?= base_url() ?>assets/icon/R.png" alt="">
+                                </center>
+                                    <br>
+                                    <div class="text-center">
+                                        <h1 class="h2 text-dark mb-4"><b>APLIKASI</b></h1>
+                                    </div>
+                                    <div class="text-center">
+                                        <h1 class="h3 text-dark mb-4">INVENTORY BARANG</h1>
+                                    </div>
+                                    <hr class="bg-dark">
                                 </div>
                                 <form class="user">
                                     <div class="form-group">

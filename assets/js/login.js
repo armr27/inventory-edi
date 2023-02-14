@@ -33,10 +33,12 @@ function cek_user(usr, pwd) {
             if (hasil.respon == 'success') {
                 pesan('Berhasil Login!', 'success', 'true');
                 $("#login").text("Login");
+            } else if(hasil.respon == 'inActive'){
+                pesan('Akun tidak Aktif', 'error', 'false');
+                $("#login").text("Login");
             } else {
                 pesan('User & Password salah!', 'error', 'false');
                 $("#login").text("Login");
-                
             }
         }
     });

@@ -82,9 +82,12 @@
 
 <script src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/pengguna.js"></script>
-<?php if($this->session->flashdata('Pesan')): ?>
-<?= $this->session->flashdata('Pesan') ?>
-<?php else: ?>
+<?php if($this->session->flashdata('Pesan')){
+    echo $this->session->flashdata('Pesan');
+    unset($_SESSION['Pesan']);
+}
+else {
+?>
 <script>
 $(document).ready(function() {
     let timerInterval
@@ -102,4 +105,4 @@ $(document).ready(function() {
     })
 });
 </script>
-<?php endif; ?>
+<?php } ?>

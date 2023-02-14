@@ -182,6 +182,7 @@
 
 <?php if($this->session->flashdata('Pesan')): ?>
 <?= $this->session->flashdata('Pesan') ?>
+<?php unset($_SESSION['Pesan']); ?>
 <?php else: ?>
 <script>
 $(document).ready(function() {

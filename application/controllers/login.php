@@ -51,7 +51,7 @@ class Login extends CI_Controller {
 			echo json_encode($respon);
     	}
     	else{
-			$respon = array('respon' => 'failed');
+			$respon = array('respon' => 'inActive');
 			echo json_encode($respon);
 		}
 

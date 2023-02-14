@@ -15,8 +15,8 @@ if ($this->session->has_userdata('login_session')) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/icon/box.png">
+    <meta name="author" content="ArMr27">
+    <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/icon/favicon.ico">
     <link href="<?= base_url(); ?>assets/loading/loader.css" rel="stylesheet" type="text/css">
     <link href="<?= base_url(); ?>assets/css/all.css" rel="stylesheet">
     <link href="<?= base_url(); ?>assets/css/animate/animate.min.css" rel="stylesheet">
@@ -46,6 +46,6 @@ if ($this->session->has_userdata('login_session')) {
 
 </head>
 
-<body class="bg-gradient-secondary">
+<body class="bg-gradient-danger">
 <!-- Base url untuk js-->
 <input type="hidden" value="<?= base_url() ?>" id="baseurl">

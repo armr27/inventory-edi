@@ -16,7 +16,6 @@ class Supplier extends CI_Controller {
 	{
 		$data['title'] = 'Supplier';
 		$data['supplier'] = $this->supplier_model->data()->result();
-
 		$this->load->view('templates/header', $data);
 		$this->load->view('supplier/index');
 		$this->load->view('templates/footer');
@@ -37,7 +36,7 @@ class Supplier extends CI_Controller {
 		);
 
 		$this->supplier_model->tambah_data($data, 'supplier');
-		$this->session->set_flashdata('Pesan','
+		$this->session->setflashdata('Pesan','
 		<script>
 		$(document).ready(function() {
 			swal.fire({

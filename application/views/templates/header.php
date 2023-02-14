@@ -15,10 +15,10 @@ if (!$this->session->has_userdata('login_session')) {
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/icon/box.png">
+    <meta name="author" content="ArMr27">
+    <link rel="icon" type="image/png" href="<?= base_url(); ?>assets/icon/favicon.ico">
 
-    <title>INVENTORYWEB | <?= $title ?></title>
+    <title>Warehouse | <?= $title ?></title>
 
     <!-- Custom fonts for this template-->
     <link href="<?= base_url(); ?>assets/sbadmin/vendor/fontawesome-free/css/all.min.css" rel="stylesheet"
@@ -49,14 +49,14 @@ if (!$this->session->has_userdata('login_session')) {
     <div id="wrapper">
 
         <!-- Sidebar -->
-        <ul class="navbar-nav bg-gradient-secondary sidebar sidebar-dark accordion" id="accordionSidebar">
+        <ul class="navbar-nav bg-gradient-danger sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center" href="<?= base_url() ?>home">
                 <div class="sidebar-brand-icon ">
-                    <img src="<?= base_url(); ?>assets/icon/box.png" width="50">
+                    <img src="<?= base_url(); ?>assets/icon/R.png" width="150">
                 </div>
-                <div class="sidebar-brand-text mx-3 ">INVENTORY</div>
+                <!-- <div class="sidebar-brand-text mx-3 ">INVENTORY</div> -->
                 
             </a>
 
