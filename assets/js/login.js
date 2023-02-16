@@ -20,7 +20,7 @@ function cek_user(usr, pwd) {
     var link = $('#baseurl').val();
     var base_url = link + 'login/proses_login';
     $("#login").text("Memuat...");
-    
+
     $.ajax({
         type: 'POST',
         data: {
@@ -29,12 +29,12 @@ function cek_user(usr, pwd) {
         },
         url: base_url,
         dataType: 'json',
-        success: function(hasil) {
+        success: function (hasil) {
             if (hasil.respon == 'success') {
                 pesan('Berhasil Login!', 'success', 'true');
                 $("#login").text("Login");
-            } else if(hasil.respon == 'inActive'){
-                pesan('Akun tidak Aktif', 'error', 'false');
+            } else if (hasil.respon == 'inActive') {
+                pesan('Akun tidak Aktif', 'warning', 'false');
                 $("#login").text("Login");
             } else {
                 pesan('User & Password salah!', 'error', 'false');
@@ -68,7 +68,7 @@ function cek_email(email, pwd) {
         },
         url: base_url,
         dataType: 'json',
-        success: function(hasil) {
+        success: function (hasil) {
             if (hasil.respon == 'success') {
                 pesan('Berhasil Login!', 'success', 'true');
                 $("#login").text("Login");

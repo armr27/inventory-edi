@@ -45,11 +45,11 @@
                                     <img width="250px" src="<?= base_url() ?>assets/icon/R.png" alt="">
                                 </center>
                                     <br>
-                                    <div class="text-center">
+                                    <!-- <div class="text-center">
                                         <h1 class="h2 text-dark mb-4"><b>APLIKASI</b></h1>
-                                    </div>
+                                    </div> -->
                                     <div class="text-center">
-                                        <h1 class="h3 text-dark mb-4">INVENTORY BARANG</h1>
+                                        <h1 class="h3 text-dark mx-4"><b>SPAREPART <span style="color:red"> WAREHOUSE</span></b></h1>
                                     </div>
                                     <hr class="bg-dark">
                                 </div>

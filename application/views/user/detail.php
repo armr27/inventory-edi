@@ -60,8 +60,8 @@
                         <hr class="sidebar-divider">
 
                         <!-- NoTelepon -->
-                        <div class="form-group"><label>Nomor Telepon</label>
-                            <h4 class="h4 text-gray-800"><?= $d->notelp ?></h4>
+                        <div class="form-group"><label>Nomor Induk Pegawai</label>
+                            <h4 class="h4 text-gray-800"><?= $d->nip ?></h4>
                         </div>
 
                         <!-- Divider -->

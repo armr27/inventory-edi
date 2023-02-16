@@ -53,7 +53,7 @@ class Profile extends CI_Controller {
 		$kode = $this->input->post('iduser');
 		$namaL = $this->input->post('namaL');
 		$user = $this->input->post('user');
-		$notelp = $this->input->post('notelp');
+		$nip = $this->input->post('nip');
 		$email = $this->input->post('email');
 		$level = $this->input->post('level');
 		$status = $this->input->post('status');
@@ -92,7 +92,7 @@ class Profile extends CI_Controller {
 		$data=array(
 			'nama'=>$namaL,
 			'username'=>$user,
-			'notelp'=>$notelp,
+			'nip'=>$nip,
 			'email'=>$email,
 			'level'=>$level,
 			'password'=>$passUpdate,

@@ -50,9 +50,9 @@
                                 <input class="form-control" name="user" type="text" value="<?= $u->username ?>">
                             </div>
 
-                            <!-- NO Telepon -->
-                            <div class="form-group"><label>Nomor Telepon</label>
-                                <input class="form-control" name="notelp" type="number" value="<?= $u->notelp ?>">
+                            <!-- NO Induk Pegawai -->
+                            <div class="form-group"><label>Nomor Induk Pegawai</label>
+                                <input class="form-control" name="nip" type="number" value="<?= $u->nip ?>">
                             </div>
 
                             <!-- Email -->
@@ -65,10 +65,10 @@
                                 <select name="level" class="form-control">
                                     <option value="admin" 
                                     <?php if($u->level == "admin"): ?> Selected <?php endif; ?> >Admin</option>
-                                    <option value="manajer" 
-                                    <?php if($u->level == "manajer"): ?> Selected <?php endif; ?> >Manajer</option>
-                                    <option value="gudang" 
-                                    <?php if($u->level == "gudang"): ?> Selected <?php endif; ?> >Gudang</option>
+                                    <option value="Kepala Gudang" 
+                                    <?php if($u->level == "Kepala Gudang"): ?> Selected <?php endif; ?> >Kepala Gudang</option>
+                                    <option value="Member" 
+                                    <?php if($u->level == "Member"): ?> Selected <?php endif; ?> >Member</option>
                                 </select>
                             </div>
 

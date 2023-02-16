@@ -97,7 +97,7 @@ class User extends CI_Controller {
 		$kode = $this->user_model->buat_kode(); 
 		$namaL = $this->input->post('namaL');
 		$user = $this->input->post('user');
-		$notelp = $this->input->post('notelp');
+		$nip = $this->input->post('nip');
 		$email = $this->input->post('email');
 		$level = $this->input->post('level');
 		$pass = $this->input->post('pwd');
@@ -126,7 +126,7 @@ class User extends CI_Controller {
 			'id_user'=>$kode,
 			'nama'=>$namaL,
 			'username'=>$user,
-			'notelp'=>$notelp,
+			'nip'=>$nip,
 			'email'=>$email,
 			'level'=>$level,
 			'password'=>md5($pass),
@@ -163,7 +163,7 @@ class User extends CI_Controller {
 		$kode = $this->input->post('iduser');
 		$namaL = $this->input->post('namaL');
 		$user = $this->input->post('user');
-		$notelp = $this->input->post('notelp');
+		$nip = $this->input->post('nip');
 		$email = $this->input->post('email');
 		$level = $this->input->post('level');
 		$status = $this->input->post('status');
@@ -201,7 +201,7 @@ class User extends CI_Controller {
 		$data=array(
 			'nama'=>$namaL,
 			'username'=>$user,
-			'notelp'=>$notelp,
+			'nip'=>$nip,
 			'email'=>$email,
 			'level'=>$level,
 			'password'=>$passUpdate,

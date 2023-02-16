@@ -50,9 +50,9 @@
                                 <input class="form-control" name="user" type="text" value="<?= $u->username ?>">
                             </div>
 
-                            <!-- NO Telepon -->
-                            <div class="form-group"><label>Nomor Telepon</label>
-                                <input class="form-control" name="notelp" type="number" value="<?= $u->notelp ?>">
+                            <!-- NO Induk Pegawai -->
+                            <div class="form-group"><label>Nomor Induk Pegawai</label>
+                                <input class="form-control" name="nip" type="number" value="<?= $u->nip ?>">
                             </div>
 
                             <!-- Email -->
@@ -62,19 +62,27 @@
 
                             <!-- Level -->
                             <div class="form-group"><label>Level</label>
+                            <?php if (($this->session->userdata('login_session')['level'] == 'admin')){ ?>
                                 <select name="level" class="form-control">
+                            <?php } else { ?>
+                                <select name="level" class="form-control" name="nip" disabled>
+                                <?php } ?>
                                     <option value="admin" 
                                     <?php if($u->level == "admin"): ?> Selected <?php endif; ?> >Admin</option>
-                                    <option value="manajer" 
-                                    <?php if($u->level == "manajer"): ?> Selected <?php endif; ?> >Manajer</option>
-                                    <option value="gudang" 
-                                    <?php if($u->level == "gudang"): ?> Selected <?php endif; ?> >Gudang</option>
+                                    <option value="kepala gudang" 
+                                    <?php if($u->level == "kepala gudang"): ?> Selected <?php endif; ?> >kepala gudang</option>
+                                    <option value="member" 
+                                    <?php if($u->level == "member"): ?> Selected <?php endif; ?> >member</option>
                                 </select>
                             </div>
 
                              <!-- Status -->
                              <div class="form-group"><label>Status</label>
+                             <?php if (($this->session->userdata('login_session')['level'] == 'admin')){ ?>
                                 <select name="status" class="form-control">
+                            <?php } else { ?>
+                                <select name="status" class="form-control" disabled>
+                                <?php } ?>
                                     <option value="Aktif" 
                                     <?php if($u->status == "Aktif"): ?> Selected <?php endif; ?> >Aktif</option>
                                     <option value="Tidak Aktif" 

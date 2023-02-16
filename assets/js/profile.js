@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     ambilData();
 });
 
@@ -13,10 +13,10 @@ function ambilData() {
         data: 'id=' + id,
         url: base_url,
         dataType: 'json',
-        success: function(hasil) {
+        success: function (hasil) {
             $("#namaL").text(hasil[0].nama);
             $("#email").text(hasil[0].email);
-            $("#notelp").text(hasil[0].notelp);
+            $("#nip").text(hasil[0].nip);
             $("#status").text(hasil[0].status);
             $("#level").text(hasil[0].level);
             document.getElementById('outputImg').src = link_gambar + hasil[0].foto;

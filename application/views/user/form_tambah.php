@@ -43,8 +43,8 @@
                             </div>
 
                             <!-- NO Telepon -->
-                            <div class="form-group"><label>Nomor Telepon</label>
-                                <input class="form-control" name="notelp" type="number" >
+                            <div class="form-group"><label>Nomor Induk Pegawai</label>
+                                <input class="form-control" name="nip" type="number" >
                             </div>
 
                             <!-- Email -->
@@ -57,8 +57,8 @@
                                 <select name="level" class="form-control">
                                     <option value="">--Pilih--</option>
                                     <option value="admin">Admin</option>
-                                    <option value="manajer">Manajer</option>
-                                    <option value="gudang">Gudang</option>
+                                    <option value="Kepala Gudang">Kepala Gudang</option>
+                                    <option value="member">Member</option>
                                 </select>
                             </div>
 

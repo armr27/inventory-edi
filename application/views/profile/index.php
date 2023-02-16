@@ -52,9 +52,9 @@
             <div class="col-lg-12">
                 <center>
                     <h3 class="h3 mb-0 text-gray-800 d-sm-flex justify-content-center">
-                        <i class="fa fa-phone"></i>
+                        <i class="fa-solid fa-id-badge"></i>
                         &nbsp;
-                        <div class="div" id="notelp">-</div>
+                        <div class="div" id="nip">-</div>
                     </h3>
                 <div class="col-8 mb-4">
                     <center>

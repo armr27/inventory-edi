@@ -1,7 +1,7 @@
 function validateForm() {
     var namaL = document.forms["myForm"]["namaL"].value;
     var user = document.forms["myForm"]["user"].value;
-    var notelp = document.forms["myForm"]["notelp"].value;
+    var nip = document.forms["myForm"]["nip"].value;
     var email = document.forms["myForm"]["email"].value;
     var level = document.forms["myForm"]["level"].value;
     var pwd = document.forms["myForm"]["pwd"].value;
@@ -13,10 +13,10 @@ function validateForm() {
     } else if (user == '') {
         validasi('Username wajib di isi!', 'warning');
         return false;
-    } else if (notelp == '') {
+    } else if (nip == '') {
         validasi('Nomor Telepon wajib di isi!', 'warning');
         return false;
-    } 
+    }
     else if (email == '') {
         validasi('Email wajib di isi!', 'warning');
         return false;
@@ -25,14 +25,14 @@ function validateForm() {
         return false;
     } else if (pwd !== '' || kpwd !== '') {
 
-        if(pwd.length < 6){
+        if (pwd.length < 6) {
             validasi('Panjang Password minimal 6 karakter!', 'warning');
             return false;
-        }else if(pwd !== kpwd){
+        } else if (pwd !== kpwd) {
             validasi('Konfirmasi Password tidak sesuai!', 'warning');
             return false;
         }
-       
+
     }
 
 }
