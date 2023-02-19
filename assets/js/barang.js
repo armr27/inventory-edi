@@ -1,6 +1,8 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $('#dtHorizontalExample').DataTable({
-        "scrollX": true
+        "scrollX": true,
+        processing: true,
+        serverSide: true,
     });
     $('.dataTables_length').addClass('bs-select');
 
@@ -35,7 +37,7 @@ function konfirmasi(id) {
                 timer: 1000,
                 showConfirmButton: false,
             }).then(
-                function() {
+                function () {
                     window.location.href = base_url + "barang/proses_hapus/" + id;
                 }
             );

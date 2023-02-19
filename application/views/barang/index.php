@@ -25,26 +25,29 @@
                         <thead>
                             <tr>
                                 <th width="1%">No</th>
-                                <th>Foto</th>
-                                <th>Nama Barang</th>
-                                <th>Jenis Barang</th>
-                                <th>Stok</th>
-                                <th>Satuan</th>
+                                <th>Mat Code</th>
+                                <th>Material Description</th>
+                                <th>UOM</th>
+                                <th>Location</th>
+                                <th>Stock</th>
                                 <?php if($this->session->userdata('login_session')['level'] == 'admin' || $this->session->userdata('login_session')['level'] == 'gudang') : ?>
                                 <th width="1%">Aksi</th>
                                 <?php endif; ?>
                             </tr>
                         </thead>
-                        <tbody style="cursor:pointer;" id="tbody">
+                        <tbody id="tbody">
                             <?php $no=1; foreach ($barang as $b): ?>
                             <tr>
-                                <td onclick="detail('<?= $b->id_barang ?>')"><?= $no++ ?>.</td>
-                                <td onclick="detail('<?= $b->id_barang ?>')"><img style="border-radius: 5px;"
-                                        src="assets/upload/barang/<?= $b->foto ?>" alt="" width="75px"></td>
-                                <td onclick="detail('<?= $b->id_barang ?>')"><?= $b->nama_barang ?></td>
-                                <td onclick="detail('<?= $b->id_barang ?>')"><?= $b->nama_jenis ?></td>
-                                <td onclick="detail('<?= $b->id_barang ?>')">
-                                    <?php  
+                                <td><?= $no++ ?>.</td>
+                                <!-- <td><img style="border-radius: 5px;"
+                                        src="assets/upload/barang/<?= $b->foto ?>" alt="" width="75px"></td> -->
+                                <td><?= $b->Mat_Code ?></td>
+                                <td><?= $b->Material_Description ?></td>
+                                <td><?= $b->UOM ?></td>
+                                <!-- <td onclick="detail('<?= $b->id_barang ?>')"><?= $b->nama_jenis ?></td> -->
+                                <td><?= $b->Location ?></td>
+                                <td>
+                                    <!-- <?php  
                                     $data = $this->db->select_sum('jumlah_masuk')->from('barang_masuk')->where('id_barang', $b->id_barang)->get();
                                     $data2 = $this->db->select_sum('jumlah_keluar')->from('barang_keluar')->where('id_barang', $b->id_barang)->get();
                                 
@@ -53,12 +56,11 @@
                                     $bk = $data2->row();
                                     $hasil = intval($b->stok) + (intval($bm->jumlah_masuk) - intval($bk->jumlah_keluar));
                                     ?>
-                                    <?= $hasil ?>
+                                    <?= $hasil ?> -->
                                 </td>
-                                <td onclick="detail('<?= $b->id_barang ?>')"><?= $b->nama_satuan ?></td>
                                 <?php if($this->session->userdata('login_session')['level'] == 'admin' || $this->session->userdata('login_session')['level'] == 'gudang') : ?>
                                 <td>
-                                    <center>
+                                    <!-- <center>
                                         <a href="<?= base_url() ?>barang/ubah/<?= $b->id_barang ?>"
                                             class="btn btn-circle btn-success btn-sm">
                                             <i class="fas fa-pen"></i>
@@ -67,7 +69,7 @@
                                             class="btn btn-circle btn-danger btn-sm">
                                             <i class="fas fa-trash"></i>
                                         </a>
-                                    </center>
+                                    </center> -->
                                 </td>
                                 <?php endif; ?>
                             </tr>

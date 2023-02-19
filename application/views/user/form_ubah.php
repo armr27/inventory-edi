@@ -62,13 +62,13 @@
 
                             <!-- Level -->
                             <div class="form-group"><label>Level</label>
-                                <select name="level" class="form-control">
+                                <select name="level" class="form-control" >
                                     <option value="admin" 
                                     <?php if($u->level == "admin"): ?> Selected <?php endif; ?> >Admin</option>
-                                    <option value="Kepala Gudang" 
-                                    <?php if($u->level == "Kepala Gudang"): ?> Selected <?php endif; ?> >Kepala Gudang</option>
-                                    <option value="Member" 
-                                    <?php if($u->level == "Member"): ?> Selected <?php endif; ?> >Member</option>
+                                    <option value="kepala gudang" 
+                                    <?php if($u->level == "kepala gudang"): ?> Selected <?php endif; ?> >Kepala Gudang</option>
+                                    <option value="member" 
+                                    <?php if($u->level == "member"): ?> Selected <?php endif; ?> >Member</option>
                                 </select>
                             </div>
 

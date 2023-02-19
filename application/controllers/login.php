@@ -39,7 +39,7 @@ class Login extends CI_Controller
 		$data = $this->login_model->cek_login($where, 'user')->row_array();
 		$cekEmail = $this->db->query("SELECT * FROM `user` WHERE status='Tidak Aktif'")->num_rows();
 		if ($cek > 0 ) {
-			if ($cekEmail = 0){
+			if ($cekEmail == 0){
 			$userdata = [
 				'id_user' => $data['id_user'],
 				'username' => $data['nama'],

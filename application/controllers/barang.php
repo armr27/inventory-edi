@@ -17,7 +17,7 @@ class Barang extends CI_Controller {
 	public function index()
 	{
 		$data['title'] = 'Barang';
-		$data['barang'] = $this->barang_model->dataJoin()->result();
+		$data['barang'] = $this->barang_model->dataSparepart()->result();
 
 		$this->load->view('templates/header', $data);
 		$this->load->view('barang/index');

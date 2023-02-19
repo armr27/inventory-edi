@@ -1,10 +1,16 @@
 <?php
 class barang_model extends ci_model{
+  
 
     function data()
     {
         $this->db->order_by('id_barang','DESC');
         return $query = $this->db->get('barang');
+    }
+
+    function dataSparepart() 
+    {
+      return $this->db->query("SELECT * FROM sparepart order by mat_code asc");
     }
 
     public function dataJoin()
@@ -17,6 +23,7 @@ class barang_model extends ci_model{
       $this->db->order_by('b.id_barang','DESC');
       return $query = $this->db->get();
     }
+    
 
     public function totalStok()
     {
