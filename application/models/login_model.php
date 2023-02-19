@@ -10,4 +10,5 @@ class login_model extends ci_model{
 	{
 		return $this->db->get_where($table, $where);
 	}
+
 }

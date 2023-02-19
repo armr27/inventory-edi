@@ -68,7 +68,7 @@
                                         Login
                                     </a>
                                     <div class="text-center">
-                                        <a href="<?= base_url("login/forgotpassword") ?>">Lupa Password ?</a>
+                                        <!-- <a href="<?= base_url("login/forgotpassword") ?>">Lupa Password ?</a> -->
                                     </div>
                                     <br>
                                     <br>

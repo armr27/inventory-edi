@@ -37,8 +37,9 @@ class Login extends CI_Controller
 
 		$cek = $this->login_model->cek_login($where, 'user')->num_rows();
 		$data = $this->login_model->cek_login($where, 'user')->row_array();
-		if ($cek > 0) {
-
+		$cekEmail = $this->db->query("SELECT * FROM `user` WHERE status='Tidak Aktif'")->num_rows();
+		if ($cek > 0 ) {
+			if ($cekEmail = 0){
 			$userdata = [
 				'id_user' => $data['id_user'],
 				'username' => $data['nama'],
@@ -46,15 +47,17 @@ class Login extends CI_Controller
 				'level' => $data['level'],
 				'foto' => $data['foto']
 			];
-
 			$this->session->set_userdata('login_session', $userdata);
 			$respon = array('respon' => 'success');
 			echo json_encode($respon);
+		} else {$respon = array('respon' => 'inActive');
+			echo json_encode($respon);}
 		} else {
 			$respon = array('respon' => 'failed');
 			echo json_encode($respon);
 		}
 	}
+
 	public function proses_forgot()
 	{
 		$username = $this->input->post('user');

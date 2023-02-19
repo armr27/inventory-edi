@@ -34,7 +34,7 @@ function cek_user(usr, pwd) {
                 pesan('Berhasil Login!', 'success', 'true');
                 $("#login").text("Login");
             } else if (hasil.respon == 'inActive') {
-                pesan('Akun tidak Aktif', 'warning', 'false');
+                pesan('Akun telah dinonaktifkan', 'warning', 'false');
                 $("#login").text("Login");
             } else {
                 pesan('User & Password salah!', 'error', 'false');
