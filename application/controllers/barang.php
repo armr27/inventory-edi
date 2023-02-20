@@ -24,6 +24,52 @@ class Barang extends CI_Controller {
 		$this->load->view('templates/footer');
     }
 
+
+
+
+//method yang digunakan untuk request data mahasiswa
+public function ajax_list()
+{
+	header('Content-Type: application/json');
+	$list = $this->barang_model->get_datatables();
+	$data = array();
+	$no = $this->input->post('start');
+	//looping data mahasiswa
+	foreach ($list as $Data_sparepart) {
+		$no++;
+		$row = array();
+		//row pertama akan kita gunakan untuk btn edit dan delete
+		$row[] = $no;
+		$row[] = $Data_sparepart->Mat_Code;
+		$row[] = $Data_sparepart->Material_Description;
+		$row[] = $Data_sparepart->UOM;
+		$row[] = $Data_sparepart->Location;
+		$row[] = $Data_sparepart->Stock;
+		$row[] =  '<a href="<?= base_url() ?>barang/ubah/<?= $Data_sparepart->Mat_Code ?>"
+		class="btn btn-circle btn-success btn-sm">
+		<i class="fas fa-pen"></i>
+	</a>
+	<a href="#" onclick="konfirmasi('. $Data_sparepart->Mat_Code . ')"
+		class="btn btn-circle btn-danger btn-sm">
+		<i class="fas fa-trash"></i>
+	</a>';
+		$data[] = $row;
+	}
+	$output = array(
+		"draw" => $this->input->post('draw'),
+		"recordsTotal" => $this->barang_model->count_all(),
+		"recordsFiltered" => $this->barang_model->count_filtered(),
+		"data" => $data,
+	);
+	//output to json format
+	$this->output->set_output(json_encode($output));
+}
+
+
+
+
+
+
     public function tambah()
 	{
         $data['title'] = 'Barang';
@@ -202,17 +248,17 @@ class Barang extends CI_Controller {
 
 	public function proses_hapus($id)
 	{
-		$where = array('id_barang' => $id );
-		$foto = $this->barang_model->ambilFoto($where);
-		if($foto){
-			if($foto == 'box.png'){
+		// $where = array('Mat_Code' => $id );
+		// $foto = $this->barang_model->ambilFoto($where);
+		// if($foto){
+		// 	if($foto == 'box.png'){
 
-			}else{
-				unlink('./assets/upload/barang/'.$foto.'');
-			}
+		// 	}else{
+		// 		unlink('./assets/upload/barang/'.$foto.'');
+		// 	}
 			
-			$this->barang_model->hapus_data($where, 'barang');
-		}
+			$this->db->query("DELETE FROM `sparepart` WHERE Mat_Code='$id'");
+		// }
 
 		$this->session->set_flashdata('Pesan','
 		<script>

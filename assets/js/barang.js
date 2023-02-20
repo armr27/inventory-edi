@@ -1,8 +1,17 @@
 $(document).ready(function () {
     $('#dtHorizontalExample').DataTable({
         "scrollX": true,
-        processing: true,
-        serverSide: true,
+        "language": {
+            "url": "//cdn.datatables.net/plug-ins/1.10.24/i18n/Indonesian.json"
+        },
+        "processing": true,
+        "serverSide": true,
+        "order": [],
+        "ajax": {
+            //panggil method ajax list dengan ajax
+            "url": 'barang/ajax_list',
+            "type": "POST"
+        }
     });
     $('.dataTables_length').addClass('bs-select');
 
