@@ -1,3 +1,5 @@
+<link rel="preload" as="images" href="<?= base_url() ?>assets/icon/R.png"> 
+
 <div class="container">
 
     <!-- Outer Row -->

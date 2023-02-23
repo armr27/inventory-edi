@@ -122,7 +122,7 @@ if (!$this->session->has_userdata('login_session')) {
                                 <div class="bg-white py-2 collapse-inner rounded">
                                     <!-- <h6 class="collapse-header">Master Barang</h6> -->
                                 
-                                        <a class="collapse-item" href="<?= base_url() ?>satuan"><b>Satuan Barang</b></a>
+                                        <!-- <a class="collapse-item" href="<?= base_url() ?>satuan"><b>Satuan Barang</b></a> -->
                                         <!-- <a class="collapse-item" href="<?= base_url() ?>jenis"><b>Jenis Barang</b></a> -->
                                     <a class="collapse-item" href="<?= base_url() ?>barang"><b>Data Barang</b></a>
                                 </div>

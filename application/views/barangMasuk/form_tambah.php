@@ -167,7 +167,11 @@ $('.chosen').chosen({
 });
 
 $('#datepicker').datepicker({
-    autoclose: true
+    autoclose: true,
+    endDate: '+0d',
+	todayHighlight	        : 'TRUE',
+	todayBtn		: 'TRUE'
+
 });
 </script>
 

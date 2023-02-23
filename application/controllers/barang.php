@@ -34,6 +34,7 @@ public function ajax_list()
 	$list = $this->barang_model->get_datatables();
 	$data = array();
 	$no = $this->input->post('start');
+	$base_url = base_url();
 	//looping data mahasiswa
 	foreach ($list as $Data_sparepart) {
 		$no++;
@@ -45,7 +46,7 @@ public function ajax_list()
 		$row[] = $Data_sparepart->UOM;
 		$row[] = $Data_sparepart->Location;
 		$row[] = $Data_sparepart->Stock;
-		$row[] =  '<a href="<?= base_url() ?>barang/ubah/<?= $Data_sparepart->Mat_Code ?>"
+		$row[] =  '<a href="'.$base_url.'barang/ubah/'.$Data_sparepart->Mat_Code.'"
 		class="btn btn-circle btn-success btn-sm">
 		<i class="fas fa-pen"></i>
 	</a>
@@ -92,12 +93,12 @@ public function ajax_list()
         $data['title'] = 'Barang';
 
         //menampilkan data berdasarkan id
-		$where = array('id_barang'=>$id);
-        $data['data'] = $this->barang_model->detail_data($where, 'barang')->result();
+		$where = array('Mat_Code'=>$id);
+        $data['data'] = $this->barang_model->detail_data($where, 'sparepart')->result();
         
         //data untuk select
-		$data['jenis'] = $this->jenis_model->data()->result();
-        $data['satuan'] = $this->satuan_model->data()->result();
+		// $data['jenis'] = $this->jenis_model->data()->result();
+        // $data['satuan'] = $this->satuan_model->data()->result();
 
         //jml
 		$data['jmlJenis'] = $this->satuan_model->data()->num_rows();
@@ -131,11 +132,11 @@ public function ajax_list()
 
         $this->load->library('upload', $config);
         
-		$kode = 	$this->barang_model->buat_kode();
-		$barang = $this->input->post('barang');
-		$stok = 	$this->input->post('stok');
-		$jenis = 	$this->input->post('jenis');
-        $satuan = 	$this->input->post('satuan');
+		$mat_code = 	$this->input->post('mat_code');
+		$material_description = $this->input->post('material_description');
+		$UOM = 	$this->input->post('UOM');
+		$location = 	$this->input->post('location');
+        $stock = 	$this->input->post('stock');
         
         if ($namaFile == '') {
             $ganti = 'box.png';
@@ -156,15 +157,14 @@ public function ajax_list()
       }
 		
 		$data=array(
-			'id_barang'=> $kode,
-			'nama_barang'=> $barang,
-			'stok'=> $stok,
-			'id_jenis'=> $jenis,
-            'id_satuan'=> $satuan,
-            'foto' => $ganti
+			'Mat_Code'=> $mat_code,
+			'Material_Description'=> $material_description,
+			'UOM'=> $UOM,
+			'Location'=> $location,
+            'Stock'=> $stock,
 		);
 
-		$this->barang_model->tambah_data($data, 'barang');
+		$this->barang_model->tambah_data($data, 'sparepart');
 		$this->session->set_flashdata('Pesan','
 		<script>
 		$(document).ready(function() {
@@ -189,11 +189,11 @@ public function ajax_list()
 
         $this->load->library('upload', $config);
         
-		$kode =    $this->input->post('idbarang');
-		$barang =  $this->input->post('barang');
-		$stok = 	$this->input->post('stok');
-		$jenis = 	$this->input->post('jenis');
-        $satuan = 	$this->input->post('satuan');
+		$mat_code = $this->input->post('mat_code');
+		$material_description = $this->input->post('material_description');
+		$uom = $this->input->post('UOM');
+		$location = $this->input->post('location');
+		$stock = $this->input->post('stock');
         
         $flama = $this->input->post('fotoLama');
 
@@ -220,18 +220,18 @@ public function ajax_list()
       }
 		
 		$data=array(
-			'nama_barang'=> $barang,
-			'stok'=> $stok,
-			'id_jenis'=> $jenis,
-            'id_satuan'=> $satuan,
-            'foto' => $ganti
+			'Mat_Code'=> $mat_code,
+			'Material_Description'=> $material_description,
+			'UOM'=> $uom,
+            'Location'=> $location,
+            'Stock' => $stock
 		);
 
 		$where = array(
-			'id_barang'=>$kode
+			'Mat_Code'=>$mat_code
 		);
 
-		$this->barang_model->ubah_data($where, $data, 'barang');
+		$this->barang_model->ubah_data($where, $data, 'sparepart');
 		$this->session->set_flashdata('Pesan','
 		<script>
 		$(document).ready(function() {

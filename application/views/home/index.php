@@ -55,15 +55,9 @@
                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">Total Stok Barang
                             </div>
                             <?php  
-                                $data = $this->db->select_sum('jumlah_masuk')->from('barang_masuk')->get();
-                                $data2 = $this->db->select_sum('jumlah_keluar')->from('barang_keluar')->get();
-                                $data3 = $this->db->select_sum('stok')->from('barang')->get();
-
-
-                                $bm = $data->row();
-                                $bk = $data2->row();
+                                $data3 = $this->db->select_sum('Stock')->from('sparepart')->get();
                                 $b = $data3->row();
-                                $hasil = $b->stok + (intval($bm->jumlah_masuk) - intval($bk->jumlah_keluar));
+                                $hasil = $b->Stock ;
                             ?>
                             <div class="h5 mb-0 font-weight-bold text-gray-800"><?= $hasil ?> Data</div>
                         </div>

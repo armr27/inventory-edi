@@ -98,11 +98,11 @@ private function _get_datatables_query()
     public function totalStok()
     {
       $data=$this->db
-    ->select_sum('stok')
-    ->from('barang')
+    ->select_sum('Stock')
+    ->from('sparepart')
     ->get();
-      $stok = $data->row();
-      return $stok->stok;
+      $Stock = $data->row();
+      return $Stock->Stock;
     }
 
     public function detail_join($where)

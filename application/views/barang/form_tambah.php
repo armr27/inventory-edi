@@ -31,64 +31,30 @@
                     </div>
                     <div class="card-body">
                         <div class="col-lg-12">
-                            <!-- Nama Barang -->
-                            <div class="form-group"><label>Nama Barang</label>
-                                <input class="form-control" name="barang" type="text" placeholder="">
+                             <!-- Mat_Code -->
+                             <div class="form-group"><label>Mat_Code</label>
+                                <input class="form-control" name="mat_code" type="text" >
                             </div>
 
-                            <!-- Stok -->
-                            <div class="form-group"><label>Stok Awal</label>
-                                <input class="form-control" name="stok" type="number" placeholder="">
+                            <!-- Material Description -->
+                            <div class="form-group"><label>Material Description</label>
+                                <input class="form-control" name="material_description" type="text" >
+                            </div>
+                            
+                            <!-- UOM -->
+                            <div class="form-group"><label>UOM</label>
+                                <input class="form-control" name="UOM" type="text" >
                             </div>
 
-                            <!-- jenis -->
-                            <?php if($jmlJenis > 0): ?>
-                            <div class="form-group"><label>Jenis Barang</label>
-                                <select name="jenis" class="form-control chosen">
-                                    <option value="">--Pilih--</option>
-                                    <?php foreach($jenis as $j): ?>
-                                    <option value="<?= $j->id_jenis ?>"><?= $j->nama_jenis ?></option>
-                                    <?php endforeach ?>
-                                </select>
+                            <!-- Location -->
+                            <div class="form-group"><label>Location</label>
+                                <input class="form-control" name="location" type="text" >
                             </div>
-                            <?php else: ?>
-                            <div class="form-group"><label>Jenis Barang</label>
-                                <input type="hidden" name="jenis">
-                                <div class="d-sm-flex justify-content-between">
-                                    <span class="text-danger"><i>(Belum Ada Data Jenis!)</i></span>
-                                    <a href="<?= base_url() ?>jenis" class="btn btn-sm btn-primary btn-icon-split">
-                                        <span class="icon text-white">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                            <?php endif; ?>
 
-                             <!-- Satuan -->
-                             <?php if($jmlSatuan > 0): ?>
-                            <div class="form-group"><label>Satuan Barang</label>
-                                <select name="satuan" class="form-control chosen">
-                                    <option value="">--Pilih--</option>
-                                    <?php foreach($satuan as $s): ?>
-                                    <option value="<?= $s->id_satuan ?>"><?= $s->nama_satuan ?></option>
-                                    <?php endforeach ?>
-                                </select>
+                            <!-- Stock -->
+                            <div class="form-group"><label>Stock</label>
+                                <input class="form-control" name="stock" type="number">
                             </div>
-                            <?php else: ?>
-                            <div class="form-group"><label>Satuan Barang</label>
-                                <input type="hidden" name="satuan">
-                                <div class="d-sm-flex justify-content-between">
-                                    <span class="text-danger"><i>(Belum Ada Data Satuan!)</i></span>
-                                    <a href="<?= base_url() ?>satuan" class="btn btn-sm btn-primary btn-icon-split">
-                                        <span class="icon text-white">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-
                         </div>
 
                         <br>
@@ -97,39 +63,6 @@
 
             </div>
 
-            <div class="col-lg-4 mb-4">
-                <!-- Illustrations -->
-                <div class="card border-bottom-secondary shadow mb-4">
-                    <div class="card-header py-3 bg-secondary">
-                        <h6 class="m-0 font-weight-bold text-white">Foto</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="card bg-warning text-white shadow">
-                            <div class="card-body">
-                                Format
-                                <div class="text-white-45 small">.png .jpeg .jpg .tiff .gif .tif</div>
-                            </div>
-                        </div>
-                        <br>
-                        <center>
-                            <div id="img">
-                                <img src="<?= base_url() ?>assets/upload/barang/box.png" id="outputImg" width="200"
-                                    maxheight="300">
-                            </div>
-                        </center>
-                        <br>
-                        <!-- foto -->
-                        <div class="form-group">
-                            <div class="custom-file">
-                                <input class="custom-file-input" type="file" id="GetFile" name="photo"
-                                    onchange="VerifyFileNameAndFileSize()" accept=".png,.gif,.jpeg,.tiff,.jpg">
-                                <label class="custom-file-label" for="customFile">Pilih File</label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
         </div>
 
 
