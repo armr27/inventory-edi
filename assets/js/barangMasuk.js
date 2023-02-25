@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
     $('#dtHorizontalExample').DataTable({
         "scrollX": true
     });
@@ -13,7 +13,7 @@ function ambilBarang() {
     var link = $('#baseurl').val();
     var base_url = link + 'barangMasuk/getBarang';
     var barang = $('[name="barang"]').val();
-
+    console.log(barang)
     if (barang == '') {
         $('#preview').attr("src", link + "assets/upload/barang/box.png");
         $('#judul').text("-");
@@ -24,10 +24,11 @@ function ambilBarang() {
             data: 'id=' + barang,
             url: base_url,
             dataType: 'json',
-            success: function(hasil) {
-                $('#preview').attr("src", link + "assets/upload/barang/" + hasil[0].foto);
-                $('#judul').text(hasil[0].nama_barang);
-                getTotalStok(hasil[0].stok, hasil[0].id_barang);
+            success: function (hasil) {
+                // $('#preview').attr("src", link + "assets/upload/barang/" + hasil[0].foto);
+                $('#preview').attr("src", link + "assets/upload/barang/box.png");
+                $('#judul').text(hasil[0].Material_Description);
+                getTotalStok(hasil[0].Stock, hasil[0].Mat_Code);
             }
         });
     }
@@ -46,9 +47,8 @@ function getTotalStok(stok, id) {
         },
         url: base_url,
         dataType: 'json',
-        success: function(hasil) {
-            console.log(hasil.total);
-            $('#stok').text(parseInt(stok) + parseInt(hasil.total));
+        success: function (hasil) {
+            $('#stok').text((hasil.Stock));
         }
     });
 
@@ -84,7 +84,7 @@ function konfirmasi(id, jml, idb) {
                 timer: 1000,
                 showConfirmButton: false,
             }).then(
-                function() {
+                function () {
                     window.location.href = base_url + "barangMasuk/proses_hapus/" + id + '/' + jml + '/' + idb;
                 }
             );

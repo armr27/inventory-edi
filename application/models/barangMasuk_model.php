@@ -10,37 +10,35 @@ class barangMasuk_model extends ci_model{
 
     public function dataJoin()
     {
-      $this->db->select('*');
-      $this->db->from('barang_masuk as bm');
-      $this->db->join('barang as b', 'b.id_barang = bm.id_barang');
-      $this->db->join('supplier as s', 's.id_supplier = bm.id_supplier');
+      // $this->db->select('*');
+      // $this->db->from('barang_masuk as bm');
+      // $this->db->join('barang as b', 'b.id_barang = bm.id_barang');
+      // $this->db->join('supplier as s', 's.id_supplier = bm.id_supplier');
+      // $this->db->order_by('bm.id_barang_masuk','DESC');
 
-      $this->db->order_by('bm.id_barang_masuk','DESC');
-      return $query = $this->db->get();
+      return $query = $this->db->query("SELECT barang_masuk.id_barang_masuk, barang_masuk.Mat_Code, sparepart.Material_Description, user.nama, barang_masuk.jumlah_masuk, barang_masuk.tgl_masuk FROM barang_masuk INNER JOIN user ON barang_masuk.id_user = user.id_user INNER JOIN sparepart ON barang_masuk.Mat_Code = Sparepart.Mat_Code");
     }
 
     public function dataJoinLike($tahun)
     {
       $this->db->select('*');
       $this->db->from('barang_masuk as bm');
-      $this->db->join('barang as b', 'b.id_barang = bm.id_barang');
-      $this->db->join('supplier as s', 's.id_supplier = bm.id_supplier');
       
       $this->db->like('bm.tgl_masuk', $tahun);
       $this->db->order_by('bm.id_barang_masuk','DESC');
       return $query = $this->db->get();
+      // return $query = $this->db->query("SELECT * FROM barang_masuk LIKE tgl_masuk=%$tahun%");
     }
 
     public function transaksiTerakhir()
     {
-      $this->db->select('*');
-      $this->db->from('barang_masuk as bm');
-      $this->db->join('barang as b', 'b.id_barang = bm.id_barang');
-      $this->db->join('supplier as s', 's.id_supplier = bm.id_supplier');
-
-      $this->db->order_by('bm.id_barang_masuk','DESC');
-      $this->db->limit(5);
-      return $query = $this->db->get();
+        // $this->db->select('*');
+        // $this->db->from('barang_masuk as bm');
+        // $this->db->join('barang as b', 'b.id_barang = bm.id_barang');
+        // $this->db->join('supplier as s', 's.id_supplier = bm.id_supplier');
+        // $this->db->order_by('bm.id_barang_masuk','DESC');
+        // $this->db->limit(5);
+      return $query = $this->db->query("SELECT * FROM barang_masuk ORDER BY id_barang_masuk DESC LIMIT 5");
     }
 
     function lapdata($tglAwal, $tglAkhir)
@@ -58,25 +56,25 @@ class barangMasuk_model extends ci_model{
     function jmlperbulan($tglAwal, $tglAkhir)
     {
       $this->db->select('*');
-      $this->db->from('barang_masuk as bm');
-      $this->db->join('barang as b', 'b.id_barang = bm.id_barang');
-      $this->db->join('supplier as s', 's.id_supplier = bm.id_supplier');
+      $this->db->from('barang_masuk');
 
-      $this->db->where('bm.tgl_masuk >=', $tglAwal);
-      $this->db->where('bm.tgl_masuk <=', $tglAkhir);
+      $this->db->where('tgl_masuk >=', $tglAwal);
+      $this->db->where('tgl_masuk <=', $tglAkhir);
       return $query = $this->db->get();
     }
 
 
     public function detailJoin($where)
     {
-      $this->db->select('*');
-      $this->db->from('barang_masuk as bm');
-      $this->db->join('barang as b', 'b.id_barang = bm.id_barang');
-      $this->db->join('supplier as s', 's.id_supplier = bm.id_supplier');
-      $this->db->where('bm.id_barang_masuk',$where);
-      $this->db->order_by('bm.id_barang_masuk','DESC');
-      return $query = $this->db->get();
+      // $this->db->select('*');
+      // $this->db->from('barang_masuk as bm');
+      // $this->db->join('barang as b', 'b.id_barang = bm.id_barang');
+      // $this->db->join('supplier as s', 's.id_supplier = bm.id_supplier');
+      // $this->db->where('bm.id_barang_masuk',$where);
+      // $this->db->order_by('bm.id_barang_masuk','DESC');
+
+      return $query = $this->db->query("SELECT barang_masuk.id_barang_masuk, barang_masuk.Mat_Code, sparepart.Material_Description, user.nama, barang_masuk.jumlah_masuk, barang_masuk.tgl_masuk FROM barang_masuk INNER JOIN user ON barang_masuk.id_user = user.id_user INNER JOIN sparepart ON barang_masuk.Mat_Code = Sparepart.Mat_Code WHERE barang_masuk.id_barang_masuk='$where'");
+
     }
 
 

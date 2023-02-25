@@ -21,8 +21,6 @@ class barangKeluar_model extends ci_model{
     {
       $this->db->select('*');
       $this->db->from('barang_keluar as bk');
-      $this->db->join('barang as b', 'b.id_barang = bk.id_barang');
-
       $this->db->like('bk.tgl_keluar', $tahun);
       $this->db->order_by('bk.id_barang_keluar','DESC');
       return $query = $this->db->get();
@@ -30,12 +28,7 @@ class barangKeluar_model extends ci_model{
 
     public function transaksiTerakhir()
     {
-      $this->db->select('*');
-      $this->db->from('barang_keluar as bk');
-      $this->db->join('barang as b', 'b.id_barang = bk.id_barang');
-      $this->db->order_by('bk.id_barang_keluar','DESC');
-      $this->db->limit(5);
-      return $query = $this->db->get();
+      return $query = $this->db->query("SELECT * FROM barang_keluar ORDER BY id_barang_keluar DESC LIMIT 5");
     }
 
     function lapdata($tglAwal, $tglAkhir)
@@ -52,11 +45,10 @@ class barangKeluar_model extends ci_model{
     function jmlperbulan($tglAwal, $tglAkhir)
     {
       $this->db->select('*');
-      $this->db->from('barang_keluar as bk');
-      $this->db->join('barang as b', 'b.id_barang = bk.id_barang');
+      $this->db->from('barang_keluar');
 
-      $this->db->where('bk.tgl_keluar >=', $tglAwal);
-      $this->db->where('bk.tgl_keluar <=', $tglAkhir);
+      $this->db->where('tgl_keluar >=', $tglAwal);
+      $this->db->where('tgl_keluar <=', $tglAkhir);
       return $query = $this->db->get();
     }
 

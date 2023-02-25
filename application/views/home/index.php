@@ -171,10 +171,10 @@
                     <?php foreach($bm5Terakhir as $bm): ?>
                         
                     <div class="col-lg-2 mb-2">
-                        <img src="<?= base_url() ?>assets/upload/barang/<?= $bm->foto ?>" alt="" width="100%" style="border-radius: 5px;">
+                        <img src="<?= base_url() ?>assets/upload/barang/box.png" alt="" width="100%" style="border-radius: 5px;">
                     </div>
                     <div class="col-lg-10">
-                        <h5 class="h5 mb-0 text-gray-800"><b><?= $bm->nama_barang ?></b></h5>
+                        <h5 class="h5 mb-0 text-gray-800"><b><?= $bm->Mat_Code ?></b></h5>
                         <h6 class="h6 mb-0 text-gray-800"><?= $bm->tgl_masuk ?></h6>
                         <span class="badge badge-success"> <i class="fa fa-plus"></i> <?= $bm->jumlah_masuk ?></span>
                     </div>
@@ -210,10 +210,10 @@
                     <?php foreach($bk5Terakhir as $bk): ?>
                         
                     <div class="col-lg-2 mb-2">
-                        <img src="<?= base_url() ?>assets/upload/barang/<?= $bk->foto ?>" alt="" width="100%" style="border-radius: 5px;">
+                        <img src="<?= base_url() ?>assets/upload/barang/box.png" alt="" width="100%" style="border-radius: 5px;">
                     </div>
                     <div class="col-lg-10">
-                        <h5 class="h5 mb-0 text-gray-800"><b><?= $bk->nama_barang ?></b></h5>
+                        <h5 class="h5 mb-0 text-gray-800"><b><?= $bk->id_barang_keluar   ?></b></h5>
                         <h6 class="h6 mb-0 text-gray-800"><?= $bk->tgl_keluar ?></h6>
                         <span class="badge badge-danger"> <i class="fa fa-minus"></i> <?= $bk->jumlah_keluar ?></span>
                     </div>

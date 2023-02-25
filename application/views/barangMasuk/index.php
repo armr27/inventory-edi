@@ -50,8 +50,9 @@ function tgl_indo($tanggal){
                                 <th width="1%">No</th>
                                 <th>No.Transaksi</th>
                                 <th>Tgl Masuk</th>
-                                <th>Supplier</th>
+                                <th>Mat.Code Barang</th>
                                 <th>Nama Barang</th>
+                                <th>Nama Peminjam</th>
                                 <th>Jumlah Masuk</th>
                                 <th width="1%">Aksi</th>
                             </tr>
@@ -62,8 +63,9 @@ function tgl_indo($tanggal){
                                 <td><?= $no++ ?>.</td>
                                 <td><?= $bm->id_barang_masuk ?></td>
                                 <td><?= tgl_indo($bm->tgl_masuk) ?></td>
-                                <td><?= $bm->nama_supplier ?></td>
-                                <td><?= $bm->nama_barang ?></td>
+                                <td><?= $bm->Mat_Code   ?></td>
+                                <td><?= $bm->Material_Description ?></td>
+                                <td><?= $bm->nama ?></td>
                                 <td><span class="badge badge-success"> <i class="fa fa-plus"></i> <?= $bm->jumlah_masuk ?></span></td>
                                 <td>
                                     <center>
@@ -72,7 +74,7 @@ function tgl_indo($tanggal){
                                             <i class="fas fa-pen"></i>
                                         </a>
                                         <a href="#"
-                                            onclick="konfirmasi('<?= $bm->id_barang_masuk ?>','<?= $bm->jumlah_masuk ?>','<?= $bm->id_barang ?>')"
+                                            onclick="konfirmasi('<?= $bm->id_barang_masuk ?>','<?= $bm->jumlah_masuk ?>','<?= $bm->Mat_Code ?>')"
                                             class="btn btn-circle btn-danger btn-sm">
                                             <i class="fas fa-trash"></i>
                                         </a>

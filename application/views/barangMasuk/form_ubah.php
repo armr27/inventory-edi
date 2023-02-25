@@ -49,9 +49,9 @@ function format($tanggal){
                             </div>
 
                             <!-- Barang -->
-                            <div class="form-group"><label>Nama Barang</label>
-                                <input name="barang" type="hidden" value="<?= $d->id_barang ?>">
-                                <input class="form-control" name="preview" type="text" value="<?= $d->nama_barang ?>"
+                            <div class="form-group"><label>Mat Code Barang</label>
+                                <input name="barang" type="text" value="<?= $d->Mat_Code ?>">
+                                <input class="form-control" name="preview" type="text" value="<?= $d->Mat_Code ?>"
                                     autocomplete="off" readonly>
                             </div>
 
@@ -62,7 +62,7 @@ function format($tanggal){
                             </div>
 
                             <!-- opsi Supplier -->
-                            <?php if($jmlsupplier > 0): ?>
+                            <!-- <?php if($jmlsupplier > 0): ?>
                             <div class="form-group"><label>Supplier</label>
                                 <select name="supplier" class="form-control chosen">
                                     <option value="">--Pilih--</option>
@@ -89,11 +89,22 @@ function format($tanggal){
                                     </a>
                                 </div>
                             </div>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
+
+                            <!-- opsi Member -->
+                            <div class="form-group"><label>Nama Anggota yang Mengembalikan barang</label>
+                                <select name="member" class="form-control chosen" value="<?= $d->nama ?>">
+                                    <option value="<?= $d->nama ?>"><?= $d->nama ?></option>
+                                    <?php foreach($member as $s): ?>
+                                    <option value="<?= $s->id_user ?>"><?= $s->nama ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>                           
+
 
                             <!-- Jumlah Barang -->
                             <div class="form-group"><label>Jumlah Masuk</label>
-                                <input name="jmlmasuklama" type="hidden" value="<?= $d->jumlah_masuk ?>">
+                                <input name="jmlmasuklama" type="text" value="<?= $d->jumlah_masuk ?>">
                                 <input class="form-control" name="jmlmasuk" type="number"
                                     value="<?= $d->jumlah_masuk ?>">
                             </div>
@@ -118,7 +129,7 @@ function format($tanggal){
 
                             <center>
                                 <img id="preview" width="200px"
-                                    src="<?= base_url() ?>assets/upload/barang/<?= $d->foto ?>" alt="">
+                                    src="<?= base_url() ?>assets/upload/barang/box.png" alt="">
                             </center>
 
                             <br>

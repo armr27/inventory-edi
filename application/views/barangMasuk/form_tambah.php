@@ -1,3 +1,5 @@
+
+
 <!-- Begin Page Content -->
 <div class="container-fluid">
 
@@ -48,13 +50,14 @@
 
                             <!-- opsi barang -->
                             <?php if($jmlbarang > 0): ?>
-                            <div class="form-group"><label>Barang</label>
-                                <select name="barang" class="form-control chosen" onchange="ambilBarang()">
+                            <div class="form-group"><label>Mat Code Barang</label>
+                                <!-- <select name="barang" class="form-control chosen" onchange="ambilBarang()">
                                     <option value="">--Pilih--</option>
                                     <?php foreach($barang as $b): ?>
-                                    <option value="<?= $b->id_barang ?>"><?= $b->nama_barang ?></option>
+                                    <option value="<?= $b->Mat_Code ?>"><?= $b->Material_Description ?> (Stock = <?= $b->Stock ?>)</option>
                                     <?php endforeach ?>
-                                </select>
+                                </select> -->
+                                <input class="form-control" name="barang" type="number" placeholder="Masukkan Mat code Barang" onkeyup="ambilBarang()">
                             </div>
                             <?php else: ?>
                             <div class="form-group"><label>Barang</label>
@@ -71,7 +74,7 @@
                             <?php endif; ?>
 
                             <!-- opsi Supplier -->
-                            <?php if($jmlsupplier > 0): ?>
+                            <!-- <?php if($jmlsupplier > 0): ?>
                             <div class="form-group"><label>Supplier</label>
                                 <select name="supplier" class="form-control chosen">
                                     <option value="">--Pilih--</option>
@@ -92,7 +95,17 @@
                                     </a>
                                 </div>
                             </div>
-                            <?php endif; ?>
+                            <?php endif; ?> -->
+
+                            <!-- opsi Member -->
+                            <div class="form-group"><label>Nama Anggota yang Mengembalikan barang</label>
+                                <select name="member" class="form-control chosen">
+                                    <option value="">--Pilih--</option>
+                                    <?php foreach($member as $s): ?>
+                                    <option value="<?= $s->id_user ?>"><?= $s->nama ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>
 
                             <!-- Jumlah Barang -->
                             <div class="form-group"><label>Jumlah Masuk</label>
@@ -152,7 +165,7 @@
 
 </div>
 <!-- End of Main Content -->
-
+<script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/jquery.min.js"></script>
 <script src="<?= base_url(); ?>assets/js/barangMasuk.js"></script>
 <script src="<?= base_url(); ?>assets/js/validasi/formbarangmasuk.js"></script>

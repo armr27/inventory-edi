@@ -1,4 +1,4 @@
-$(document).ready(function() {
+$(document).ready(function () {
 
     getBulan();
 
@@ -25,7 +25,7 @@ function getBulan() {
         },
         url: base_url,
         dataType: 'json',
-        success: function(hasil) {
+        success: function (hasil) {
             grafik(
                 hasil.bmJanuari,
                 hasil.bmFebruari,
@@ -69,7 +69,7 @@ function number_format(number, decimals, dec_point, thousands_sep) {
         sep = (typeof thousands_sep === 'undefined') ? ',' : thousands_sep,
         dec = (typeof dec_point === 'undefined') ? '.' : dec_point,
         s = '',
-        toFixedFix = function(n, prec) {
+        toFixedFix = function (n, prec) {
             var k = Math.pow(10, prec);
             return '' + Math.round(n * k) / k;
         };
@@ -87,11 +87,11 @@ function number_format(number, decimals, dec_point, thousands_sep) {
 
 
 function grafik(
-    bmJanuari, bmFebruari, bmMaret, bmApril, bmMei, bmJuni, 
+    bmJanuari, bmFebruari, bmMaret, bmApril, bmMei, bmJuni,
     bmJuli, bmAgustus, bmSeptember, bmOktober, bmNovember, bmDesember,
-    bkJanuari, bkFebruari, bkMaret, bkApril, bkMei, bkJuni, 
+    bkJanuari, bkFebruari, bkMaret, bkApril, bkMei, bkJuni,
     bkJuli, bkAgustus, bkSeptember, bkOktober, bkNovember, bkDesember
-    ) {
+) {
     // Area Chart Example
     var ctx = document.getElementById("myAreaChart");
     var myLineChart = new Chart(ctx, {
@@ -100,62 +100,62 @@ function grafik(
             labels: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"],
             datasets: [
                 {
-                label: "Barang Masuk",
-                lineTension: 0.3,
-                backgroundColor: "rgba(78, 115, 223, 0.05)",
-                borderColor: "rgba(78, 115, 223, 1)",
-                pointRadius: 3,
-                pointBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointBorderColor: "rgba(78, 115, 223, 1)",
-                pointHoverRadius: 3,
-                pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
-                pointHoverBorderColor: "rgba(78, 115, 223, 1)",
-                pointHitRadius: 10,
-                pointBorderWidth: 2,
-                data: [
-                    bmJanuari,
-                    bmFebruari,
-                    bmMaret,
-                    bmApril,
-                    bmMei,
-                    bmJuni,
-                    bmJuli,
-                    bmAgustus,
-                    bmSeptember,
-                    bmOktober,
-                    bmNovember,
-                    bmDesember,
-                ],
-            },
-            {
-                label: "Barang Keluar",
-                lineTension: 0.3,
-                backgroundColor: "rgba(231, 74, 59, 0.05)",
-                borderColor: "#e74a3b",
-                pointRadius: 3,
-                pointBackgroundColor: "#e74a3b",
-                pointBorderColor: "#e74a3b",
-                pointHoverRadius: 3,
-                pointHoverBackgroundColor: "#5a5c69",
-                pointHoverBorderColor: "#5a5c69",
-                pointHitRadius: 10,
-                pointBorderWidth: 2,
-                data: [
-                    bkJanuari,
-                    bkFebruari,
-                    bkMaret,
-                    bkApril,
-                    bkMei,
-                    bkJuni,
-                    bkJuli,
-                    bkAgustus,
-                    bkSeptember,
-                    bkOktober,
-                    bkNovember,
-                    bkDesember,
-                ],
-            },
-        ],
+                    label: "Barang Masuk",
+                    lineTension: 0.3,
+                    backgroundColor: "rgba(78, 115, 223, 0.05)",
+                    borderColor: "rgba(78, 115, 223, 1)",
+                    pointRadius: 3,
+                    pointBackgroundColor: "rgba(78, 115, 223, 1)",
+                    pointBorderColor: "rgba(78, 115, 223, 1)",
+                    pointHoverRadius: 3,
+                    pointHoverBackgroundColor: "rgba(78, 115, 223, 1)",
+                    pointHoverBorderColor: "rgba(78, 115, 223, 1)",
+                    pointHitRadius: 10,
+                    pointBorderWidth: 2,
+                    data: [
+                        bmJanuari,
+                        bmFebruari,
+                        bmMaret,
+                        bmApril,
+                        bmMei,
+                        bmJuni,
+                        bmJuli,
+                        bmAgustus,
+                        bmSeptember,
+                        bmOktober,
+                        bmNovember,
+                        bmDesember,
+                    ],
+                },
+                {
+                    label: "Barang Keluar",
+                    lineTension: 0.3,
+                    backgroundColor: "rgba(231, 74, 59, 0.05)",
+                    borderColor: "#e74a3b",
+                    pointRadius: 3,
+                    pointBackgroundColor: "#e74a3b",
+                    pointBorderColor: "#e74a3b",
+                    pointHoverRadius: 3,
+                    pointHoverBackgroundColor: "#5a5c69",
+                    pointHoverBorderColor: "#5a5c69",
+                    pointHitRadius: 10,
+                    pointBorderWidth: 2,
+                    data: [
+                        bkJanuari,
+                        bkFebruari,
+                        bkMaret,
+                        bkApril,
+                        bkMei,
+                        bkJuni,
+                        bkJuli,
+                        bkAgustus,
+                        bkSeptember,
+                        bkOktober,
+                        bkNovember,
+                        bkDesember,
+                    ],
+                },
+            ],
         },
         options: {
             maintainAspectRatio: false,
@@ -185,7 +185,7 @@ function grafik(
                         maxTicksLimit: 5,
                         padding: 10,
                         // Include a dollar sign in the ticks
-                        callback: function(value, index, values) {
+                        callback: function (value, index, values) {
                             return number_format(value);
                         }
                     },
@@ -216,7 +216,7 @@ function grafik(
                 mode: 'index',
                 caretPadding: 10,
                 callbacks: {
-                    label: function(tooltipItem, chart) {
+                    label: function (tooltipItem, chart) {
                         var datasetLabel = chart.datasets[tooltipItem.datasetIndex].label || '';
                         return datasetLabel + ': ' + number_format(tooltipItem.yLabel);
                     }
