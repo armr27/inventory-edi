@@ -50,8 +50,8 @@ function format($tanggal){
 
                             <!-- Barang -->
                             <div class="form-group"><label>Nama Barang</label>
-                                <input name="barang" type="hidden" value="<?= $d->id_barang ?>">
-                                <input class="form-control" name="preview" type="text" value="<?= $d->nama_barang ?>"
+                                <input name="barang" type="hidden" value="<?= $d->Mat_Code ?>">
+                                <input class="form-control" name="preview" type="text" value="<?= $d->Material_Description ?>"
                                     autocomplete="off" readonly>
                             </div>
 
@@ -61,6 +61,15 @@ function format($tanggal){
                                     type="text" placeholder="" autocomplete="off">
                             </div>
 
+                        <!-- opsi Member -->
+                        <div class="form-group"><label>Nama Anggota yang Mengembalikan barang</label>
+                                <select name="member" class="form-control chosen" value="<?= $d->nama ?>">
+                                    <option value="<?= $d->nama ?>"><?= $d->nama ?></option>
+                                    <?php foreach($member as $s): ?>
+                                    <option value="<?= $s->id_user ?>"><?= $s->nama ?></option>
+                                    <?php endforeach ?>
+                                </select>
+                            </div>   
 
                             <!-- Jumlah Barang -->
                             <div class="form-group"><label>Jumlah Keluar</label>

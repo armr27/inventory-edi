@@ -50,8 +50,8 @@ function tgl_indo($tanggal){
                                 <th width="1%">No</th>
                                 <th>No.Transaksi</th>
                                 <th>Tgl Keluar</th>
-                                <th>Nama Barang</th>
-                                <th>Jumlah Keluar</th>
+                                <th>Nama Member</th>
+                                <th>Status Peminjaman</th>
                                 <th width="1%">Aksi</th>
                             </tr>
                         </thead>
@@ -61,19 +61,34 @@ function tgl_indo($tanggal){
                                 <td><?= $no++ ?>.</td>
                                 <td><?= $bk->id_barang_keluar ?></td>
                                 <td><?= tgl_indo($bk->tgl_keluar) ?></td>
-                                <td><?= $bk->nama_barang ?></td>
-                                <td><span class="badge badge-danger"> <i class="fa fa-minus"></i> <?= $bk->jumlah_keluar ?></span></td>
+                                <td><?= $bk->nama?></td>
+                                <td>
+                                    <?php if($bk->progress == "Proses") {?>
+                                        <span class="badge badge-warning">Dalam Proses</span>
+                                        <?php } else {?>
+                                            <span class="badge badge-success">Selesai</span>
+                                            <?php } ?>
+                                </td>
                                 <td>
                                     <center>
-                                        <a href="<?= base_url() ?>barangKeluar/ubah/<?= $bk->id_barang_keluar ?>"
+                                        <a href="<?= base_url() ?>barangKeluar/detail/<?= $bk->id_barang_keluar ?>"
+                                            class="btn btn-circle btn-primary btn-sm">
+                                            <i class="fa-solid fa-circle-info"></i>
+                                        </a>
+                                        <?php if ($this->session->userdata('login_session')['level'] == 'admin') { ?>
+                                        <a href="#"
+                                        <?php if ($bk->progress == "Proses") {?>
+                                        onclick="selesai('<?= $bk->id_barang_keluar ?>')"
+                                        <?php } ?>
                                             class="btn btn-circle btn-success btn-sm">
-                                            <i class="fas fa-pen"></i>
+                                            <i class="fa-solid fa-circle-check"></i>
                                         </a>
                                         <a href="#"
-                                            onclick="konfirmasi('<?= $bk->id_barang_keluar ?>','<?= $bk->jumlah_keluar ?>','<?= $bk->id_barang ?>')"
-                                            class="btn btn-circle btn-danger btn-sm">
-                                            <i class="fas fa-trash"></i>
+                                        onclick="konfirmasi('<?= $bk->id_barang_keluar ?>')"
+                                        class="btn btn-circle btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
                                         </a>
+                                    <?php } ?>
                                     </center>
                                 </td>
                             </tr>
@@ -97,6 +112,7 @@ function tgl_indo($tanggal){
 
 <?php if($this->session->flashdata('Pesan')): ?>
 <?= $this->session->flashdata('Pesan') ?>
+<?php unset($_SESSION['Pesan']) ?>
 <?php else: ?>
 <script>
 $(document).ready(function() {

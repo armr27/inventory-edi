@@ -24,6 +24,7 @@ return array(
     'PDFBarcode' => $vendorDir . '/mpdf/mpdf/classes/barcode.php',
     'SEA' => $vendorDir . '/mpdf/mpdf/classes/sea.php',
     'SVG' => $vendorDir . '/mpdf/mpdf/classes/svg.php',
+    'Stringable' => $vendorDir . '/myclabs/php-enum/stubs/Stringable.php',
     'TTFontFile' => $vendorDir . '/mpdf/mpdf/classes/ttfontsuni.php',
     'TTFontFile_Analysis' => $vendorDir . '/mpdf/mpdf/classes/ttfontsuni_analysis.php',
     'UCDN' => $vendorDir . '/mpdf/mpdf/classes/ucdn.php',

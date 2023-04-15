@@ -1,5 +1,9 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
+require 'vendor/autoload.php';
+
+use PhpOffice\PhpSpreadsheet\Spreadsheet;
+use PhpOffice\PhpSpreadsheet\Writer\Xlsx;
 
 class Barang extends CI_Controller {
 
@@ -39,13 +43,14 @@ public function ajax_list()
 	foreach ($list as $Data_sparepart) {
 		$no++;
 		$row = array();
-		//row pertama akan kita gunakan untuk btn edit dan delete
 		$row[] = $no;
 		$row[] = $Data_sparepart->Mat_Code;
 		$row[] = $Data_sparepart->Material_Description;
 		$row[] = $Data_sparepart->UOM;
 		$row[] = $Data_sparepart->Location;
 		$row[] = $Data_sparepart->Stock;
+		$row[] = $Data_sparepart->Sloc;
+		$row[] = $Data_sparepart->Batch;
 		$row[] =  '<a href="'.$base_url.'barang/ubah/'.$Data_sparepart->Mat_Code.'"
 		class="btn btn-circle btn-success btn-sm">
 		<i class="fas fa-pen"></i>

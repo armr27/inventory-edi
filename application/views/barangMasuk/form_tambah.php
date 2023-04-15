@@ -4,7 +4,7 @@
 <div class="container-fluid">
 
     <form action="<?= base_url() ?>barangMasuk/proses_tambah" name="myForm" method="POST" enctype="multipart/form-data"
-        onsubmit="return validateForm()">
+       onsubmit="return validateForm()">
 
 
         <!-- Page Heading -->
@@ -14,7 +14,7 @@
                     <i class="fas fa-arrow-left"></i>
                 </a>
                 &nbsp;
-                <h1 class="h2 mb-0 text-gray-800">Tambah Barang Masuk</h1>
+                <h1 class="h2 mb-0 text-gray-800">Import Barang Masuk</h1>
             </div>
 
             <button type="submit" class="btn btn-primary btn-md btn-icon-split">
@@ -27,7 +27,7 @@
         </div>
 
         <div class="d-sm-flex  justify-content-between mb-0">
-            <div class="col-lg-8 mb-4">
+            <div class="col-lg-12 mb-4">
                 <!-- form -->
                 <div class="card border-bottom-secondary shadow mb-4">
                     <div class="card-header py-3 bg-secondary">
@@ -43,74 +43,23 @@
                             </div>
 
                             <!-- Tgl Masuk -->
-                            <div class="form-group"><label>Tanggal Masuk</label>
-                                <input class="form-control" name="tgl" id="datepicker" value="<?= $tglnow ?>" type="text" placeholder=""
-                                    autocomplete="off">
+                            <div class="form-group"><label>Tanggal Import File</label>
+                                <input class="form-control" name="tgl" id="" value="<?= $tglnow ?>" type="text" placeholder=""
+                                    autocomplete="off" readonly>
                             </div>
 
-                            <!-- opsi barang -->
-                            <?php if($jmlbarang > 0): ?>
-                            <div class="form-group"><label>Mat Code Barang</label>
-                                <!-- <select name="barang" class="form-control chosen" onchange="ambilBarang()">
-                                    <option value="">--Pilih--</option>
-                                    <?php foreach($barang as $b): ?>
-                                    <option value="<?= $b->Mat_Code ?>"><?= $b->Material_Description ?> (Stock = <?= $b->Stock ?>)</option>
-                                    <?php endforeach ?>
-                                </select> -->
-                                <input class="form-control" name="barang" type="number" placeholder="Masukkan Mat code Barang" onkeyup="ambilBarang()">
+                            <!-- file -->
+                            <div class="form-group">
+                                <span>Masukkan File Excel</span>
+                            <div class="custom-file">
+                                <input class="custom-file-input" type="file" id="GetFile" name="file"
+                                    onchange="VerifyFileNameAndFileSize()" accept=".xls ,.xlsx ,.csv">
+                                <label class="custom-file-label" for="customFile">Pilih File</label>
                             </div>
-                            <?php else: ?>
-                            <div class="form-group"><label>Barang</label>
-                                <input type="hidden" name="barang">
-                                <div class="d-sm-flex justify-content-between">
-                                    <span class="text-danger"><i>(Belum Ada Data Barang!)</i></span>
-                                    <a href="<?= base_url() ?>barang" class="btn btn-sm btn-primary btn-icon-split">
-                                        <span class="icon text-white">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                            <?php endif; ?>
+                        </div>
+                            
 
-                            <!-- opsi Supplier -->
-                            <!-- <?php if($jmlsupplier > 0): ?>
-                            <div class="form-group"><label>Supplier</label>
-                                <select name="supplier" class="form-control chosen">
-                                    <option value="">--Pilih--</option>
-                                    <?php foreach($supplier as $s): ?>
-                                    <option value="<?= $s->id_supplier ?>"><?= $s->nama_supplier ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-                            <?php else: ?>
-                            <div class="form-group"><label>Supplier</label>
-                                <input type="hidden" name="supplier">
-                                <div class="d-sm-flex justify-content-between">
-                                    <span class="text-danger"><i>(Belum Ada Data supplier!)</i></span>
-                                    <a href="<?= base_url() ?>supplier" class="btn btn-sm btn-primary btn-icon-split">
-                                        <span class="icon text-white">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                            <?php endif; ?> -->
-
-                            <!-- opsi Member -->
-                            <div class="form-group"><label>Nama Anggota yang Mengembalikan barang</label>
-                                <select name="member" class="form-control chosen">
-                                    <option value="">--Pilih--</option>
-                                    <?php foreach($member as $s): ?>
-                                    <option value="<?= $s->id_user ?>"><?= $s->nama ?></option>
-                                    <?php endforeach ?>
-                                </select>
-                            </div>
-
-                            <!-- Jumlah Barang -->
-                            <div class="form-group"><label>Jumlah Masuk</label>
-                                <input class="form-control" name="jmlbarang" type="number" placeholder="">
-                            </div>
+                        
 
                         </div>
 
@@ -121,40 +70,7 @@
 
             </div>
 
-            <div class="col-lg-4 mb-4">
-                <!-- file -->
-                <div class="card border-bottom-secondary shadow mb-4">
-                    <div class="card-header py-3 bg-secondary">
-                        <h6 class="m-0 font-weight-bold text-white">Preview</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="col-lg-12">
-
-                            <center>
-                                <img id="preview" width="200px" src="<?= base_url() ?>assets/upload/barang/box.png"
-                                    alt="">
-                            </center>
-
-                            <br>
-
-                            <label><b>Nama Barang</b></label>
-                            <br>
-                            <h6 class="h6 text-gray-800" id="judul">-</h6>
-                            <!-- Divider -->
-                            <hr class="sidebar-divider">
-
-                            <label><b>Stok Barang</b></label>
-                            <br>
-                            <h6 class="h6 text-gray-800" id="stok">-</h6>
-                            <!-- Divider -->
-                            <hr class="sidebar-divider">
-
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            
         </div>
 
 

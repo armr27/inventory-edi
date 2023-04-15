@@ -10,11 +10,7 @@ class barangKeluar_model extends ci_model{
 
     public function dataJoin()
     {
-      $this->db->select('*');
-      $this->db->from('barang_keluar as bk');
-      $this->db->join('barang as b', 'b.id_barang = bk.id_barang');
-      $this->db->order_by('bk.id_barang_keluar','DESC');
-      return $query = $this->db->get();
+      return $query = $this->db->query("SELECT * FROM barang_keluar INNER JOIN user ON barang_keluar.id_user = user.id_user");
     }
 
     public function dataJoinLike($tahun)
@@ -33,23 +29,36 @@ class barangKeluar_model extends ci_model{
 
     function lapdata($tglAwal, $tglAkhir)
     {
-      $this->db->select('*');
-      $this->db->from('barang_keluar as bk');
-      $this->db->join('barang as b', 'b.id_barang = bk.id_barang');
-
-      $this->db->where('bk.tgl_keluar >=', $tglAwal);
-      $this->db->where('bk.tgl_keluar <=', $tglAkhir);
+      $this->db->select('barang_keluar.*, detail_barang_keluar.*, user.nama, sparepart.Material_Description');
+      $this->db->from('barang_keluar');
+      $this->db->join('user', 'barang_keluar.id_user = user.id_user');
+      $this->db->join('detail_barang_keluar', 'barang_keluar.id_barang_keluar = detail_barang_keluar.id_barang_keluar');
+      $this->db->join('sparepart', 'detail_barang_keluar.mat_code = sparepart.Mat_Code');
+      $this->db->where('barang_keluar.tgl_keluar >=', $tglAwal);
+      $this->db->where('barang_keluar.tgl_keluar <=', $tglAkhir);
+      $this->db->where('barang_keluar.progress', 'Selesai');
       return $query = $this->db->get();
     }
 
     function jmlperbulan($tglAwal, $tglAkhir)
     {
-      $this->db->select('*');
-      $this->db->from('barang_keluar');
-
-      $this->db->where('tgl_keluar >=', $tglAwal);
-      $this->db->where('tgl_keluar <=', $tglAkhir);
-      return $query = $this->db->get();
+      $level = $this->session->userdata('login_session')['level'];
+      if ($level == 'admin' || $level == 'kepala gudang'){
+          $id_user = $this->session->userdata('login_session')['id_user'];
+          $this->db->select('*');
+          $this->db->from('barang_keluar');
+          $this->db->where('tgl_keluar >=', $tglAwal);
+          $this->db->where('tgl_keluar <=', $tglAkhir);
+          return $query = $this->db->get();
+      } else {
+        $id_user = $this->session->userdata('login_session')['id_user'];
+        $this->db->select('*');
+        $this->db->from('barang_keluar');
+        $this->db->where('tgl_keluar >=', $tglAwal);
+        $this->db->where('tgl_keluar <=', $tglAkhir);
+        $this->db->where('id_user ', $id_user);
+        return $query = $this->db->get();
+      }
     }
 
 
@@ -57,7 +66,8 @@ class barangKeluar_model extends ci_model{
     {
       $this->db->select('*');
       $this->db->from('barang_keluar as bk');
-      $this->db->join('barang as b', 'b.id_barang = bk.id_barang');
+      $this->db->join('sparepart as b', 'b.Mat_Code = bk.Mat_Code');
+      $this->db->join('user as u', 'u.id_user = bk.id_user');
       $this->db->where('bk.id_barang_keluar',$where);
       $this->db->order_by('bk.id_barang_keluar','DESC');
       return $query = $this->db->get();

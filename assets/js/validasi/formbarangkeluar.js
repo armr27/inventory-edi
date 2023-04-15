@@ -21,6 +21,25 @@ function validateForm() {
 
 }
 
+function validateDetail() {
+    var barang = document.forms["myForm"]["barang"].value;
+    var jmlbarang = document.forms["myForm"]["jmlkeluar"].value;
+    var stok = $('#stok').text();
+    var total = parseInt(stok) - parseInt(jmlbarang);
+
+    if (barang == '') {
+        validasi('Barang wajib di isi!', 'warning');
+        return false;
+    } else if (jmlbarang == '') {
+        validasi('Jumlah Keluar wajib di isi!', 'warning');
+        return false;
+    } else if (total < 0) {
+        validasi('Jumlah melewati stok barang!', 'warning');
+        return false;
+    }
+
+}
+
 function validateFormUpdate() {
     var tgl = document.forms["myFormUpdate"]["tgl"].value;
     var barang = document.forms["myFormUpdate"]["barang"].value;

@@ -61,6 +61,17 @@ body{
   background-color: #858796;
   color: white;
 }
+
+</style>
+<style>
+  @media print {
+  body {
+    background-color: #fff; /* set background color of printed document */
+  }
+  #customers tr:nth-child(even) {
+    background-color: #f2f2f2; /* set background color of even rows */
+  }
+}
 </style>
 </head>
 <body>
@@ -80,24 +91,34 @@ body{
     </tr>
 </table>
 <br>
-<table id="customers">
+<table border="0" id="customers" >
   <tr>
     <th>No</th>
+    <th>Mat Code</th>
+    <th>Material Description</th>
     <th>Tanggal Keluar</th>
-    <th>No.Transaksi</th>
-    <th>Nama Barang</th>
+    <th>Nama Pengguna</th>
     <th>Jumlah Keluar</th>
   </tr>
-      <?php $no=1; foreach ($data as $d) { ?>
+      <?php 
+      $no=1; foreach ($data as $d) { ?>
         <tr>
           <td><?= $no++ ?></td>
+          <td><?= $d->mat_code ?></td>
+          <td><?= $d->Material_Description ?></td>
           <td><?= tgl_indo($d->tgl_keluar) ?></td>
-          <td><?= $d->id_barang_keluar ?></td>
-          <td><?= $d->nama_barang ?></td>
+          <td><?= $d->nama ?></td>
           <td><?= $d->jumlah_keluar ?></td>
         </tr>
       <?php } ?>
 </table>
 
+
+<script language=javascript>
+function printWindow() {
+bV = parseInt(navigator.appVersion);
+if (bV >= 4) window.print();}
+printWindow();
+</script>
 </body>
 </html>

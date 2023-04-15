@@ -35,26 +35,21 @@ class Laporan extends CI_Controller
     $namaFile = 'Barang_masuk_' . $tgl . '.pdf';
   }
 
-  public function barang_keluar_pdf()
+  public function barang_keluar_cetak()
   {
-    $tglawal = $this->input->post('tglawal');
-    $tglakhir = $this->input->post('tglakhir');
+    $tglawal = $this->input->get('tglawal');
+    $tglakhir = $this->input->get('tglakhir');
 
     if ($tglawal != '' && $tglakhir != '') {
       $data['data'] = $this->barangKeluar_model->lapdata($tglawal, $tglakhir)->result();
     } else {
-      $data['data'] = $this->barangKeluar_model->dataJoin()->result();
+      $data['data'] = $this->db->query("SELECT barang_keluar.*, detail_barang_keluar.*, user.nama, sparepart.Material_Description FROM barang_keluar INNER JOIN user ON barang_keluar.id_user = user.id_user INNER JOIN detail_barang_keluar ON barang_keluar.id_barang_keluar = detail_barang_keluar.id_barang_keluar INNER JOIN sparepart ON detail_barang_keluar.mat_code = sparepart.Mat_Code WHERE barang_keluar.progress = 'Selesai'")->result();
     }
 
     $data['tglawal'] = $tglawal;
     $data['tglakhir'] = $tglakhir;
 
     $data['judul'] = 'Laporan Barang Keluar';
-    $mpdf = new \Mpdf\Mpdf();
-    $html = $this->load->view('laporan/barang_keluar_pdf', $data, true);
-    $mpdf->WriteHTML($html);
-    $tgl = date('Ymd_his');
-    $namaFile = 'Barang_keluar_' . $tgl . '.pdf';
-    $mpdf->Output($namaFile, 'D');
+    $this->load->view('laporan/barang_keluar_pdf', $data);
   }
 }

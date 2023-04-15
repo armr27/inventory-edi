@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 26, 2023 at 01:59 AM
+-- Generation Time: Mar 27, 2023 at 10:05 PM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 8.0.1
 
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `inventoryweb`
+-- Database: `invenweb`
 --
 
 -- --------------------------------------------------------
@@ -53,18 +53,18 @@ INSERT INTO `barang` (`id_barang`, `nama_barang`, `stok`, `id_satuan`, `id_jenis
 
 CREATE TABLE `barang_keluar` (
   `id_barang_keluar` varchar(30) NOT NULL,
-  `id_barang` varchar(30) DEFAULT NULL,
   `id_user` varchar(30) DEFAULT NULL,
-  `jumlah_keluar` varchar(5) DEFAULT NULL,
-  `tgl_keluar` varchar(20) DEFAULT NULL
+  `tgl_keluar` varchar(20) DEFAULT NULL,
+  `progress` varchar(10) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `barang_keluar`
 --
 
-INSERT INTO `barang_keluar` (`id_barang_keluar`, `id_barang`, `id_user`, `jumlah_keluar`, `tgl_keluar`) VALUES
-('BRG-K-0001', 'BRG-0002', 'USR-001', '20', '2020-09-15');
+INSERT INTO `barang_keluar` (`id_barang_keluar`, `id_user`, `tgl_keluar`, `progress`) VALUES
+('BRG-K-0001', 'USR-0-4', '2023-03-22', 'Selesai'),
+('BRG-K-0002', 'USR-002', '2023-03-22', 'Proses');
 
 -- --------------------------------------------------------
 
@@ -74,9 +74,7 @@ INSERT INTO `barang_keluar` (`id_barang_keluar`, `id_barang`, `id_user`, `jumlah
 
 CREATE TABLE `barang_masuk` (
   `id_barang_masuk` varchar(40) NOT NULL,
-  `Mat_Code` varchar(30) DEFAULT NULL,
-  `id_user` varchar(30) DEFAULT NULL,
-  `jumlah_masuk` int(10) DEFAULT NULL,
+  `file` varchar(255) NOT NULL,
   `tgl_masuk` varchar(30) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
@@ -84,8 +82,31 @@ CREATE TABLE `barang_masuk` (
 -- Dumping data for table `barang_masuk`
 --
 
-INSERT INTO `barang_masuk` (`id_barang_masuk`, `Mat_Code`, `id_user`, `jumlah_masuk`, `tgl_masuk`) VALUES
-('BRG-M-0002', '40000046', 'USR-0-4', 1, '2023-02-26');
+INSERT INTO `barang_masuk` (`id_barang_masuk`, `file`, `tgl_masuk`) VALUES
+('IMP-M-0001', '9df9bedc-9b06-4883-a436-bec11a0dc461.xlsx', '2023-03-22'),
+('IMP-M-0002', 'MB52_10_Maret_2023_XLS38.xlsx', '2023-03-22');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `detail_barang_keluar`
+--
+
+CREATE TABLE `detail_barang_keluar` (
+  `id_detail` int(11) NOT NULL,
+  `id_barang_keluar` varchar(30) NOT NULL,
+  `mat_code` int(11) NOT NULL,
+  `jumlah_keluar` int(5) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `detail_barang_keluar`
+--
+
+INSERT INTO `detail_barang_keluar` (`id_detail`, `id_barang_keluar`, `mat_code`, `jumlah_keluar`) VALUES
+(1, 'BRG-K-0001', 80000002, 1),
+(2, 'BRG-K-0001', 80000003, 1),
+(3, 'BRG-K-0002', 80000004, 1);
 
 -- --------------------------------------------------------
 
@@ -135,24 +156,22 @@ INSERT INTO `satuan` (`id_satuan`, `nama_satuan`, `ket`) VALUES
 --
 
 CREATE TABLE `sparepart` (
-  `Mat_Code` int(11) NOT NULL,
-  `Material_Description` varchar(512) DEFAULT NULL,
-  `UOM` varchar(512) DEFAULT NULL,
-  `Location` varchar(512) DEFAULT NULL,
-  `Stock` varchar(512) DEFAULT NULL
+  `Mat_Code` int(11) DEFAULT NULL,
+  `Material_Description` varchar(255) DEFAULT NULL,
+  `UOM` varchar(10) DEFAULT NULL,
+  `Location` varchar(255) DEFAULT NULL,
+  `Stock` varchar(5) DEFAULT NULL,
+  `Sloc` int(8) NOT NULL,
+  `Batch` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `sparepart`
 --
 
-INSERT INTO `sparepart` (`Mat_Code`, `Material_Description`, `UOM`, `Location`, `Stock`) VALUES
-(40000046, 'MFO', 'L', 'STORAGE TANK', '3'),
-(40000576, 'Acetylene gas bottle', 'BT', 'TUBE 02', '0'),
-(40000710, 'Aluminium anode V&W    ', 'PC', 'A6.02', '0'),
-(80000002, 'MECH SEAL 102AGT06', 'EA', 'R07.B3.03', '0'),
-(80012792, '\"ELBOW 90° 2\"\" SCH40 SS316L\"', 'PC', 'A8.27/C 46', '0'),
-(80017704, '\"SORF FLANGE 3/4\"\" CL150 A105 CS\"', 'PC', 'A9.05/C 09', '0');
+INSERT INTO `sparepart` (`Mat_Code`, `Material_Description`, `UOM`, `Location`, `Stock`, `Sloc`, `Batch`) VALUES
+(80000002, 'MECH SEAL 102AGT06', 'EA', 'R07.B3.03', '1', 1701, 'NEW'),
+(80000003, 'MECH SEAL 102AGT07', 'EA', 'R07.B3.03', '1', 1701, 'NEW');
 
 -- --------------------------------------------------------
 
@@ -174,7 +193,9 @@ CREATE TABLE `supplier` (
 INSERT INTO `supplier` (`id_supplier`, `nama_supplier`, `notelp`, `alamat`) VALUES
 ('SPLY-0001', 'Radhian Sobarna', '087817379229', 'Sumedang'),
 ('SPLY-0002', 'Heri Perdiansyah', '089829128118', 'Sumedang'),
-('SPLY-0003', 'Widi Priansyah', '089876261556', 'Sumedang');
+('SPLY-0003', 'Widi Priansyah', '089876261556', 'Sumedang'),
+('SPLY-0004', NULL, NULL, NULL),
+('SPLY-0005', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -199,7 +220,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`id_user`, `nama`, `username`, `email`, `nip`, `level`, `password`, `foto`, `status`) VALUES
-('USR-0-4', 'Kevin GGS', 'kevin', 'kevindarkbatman@gmail.com', '123231', 'member', 'd2e7a2105d0fb461fe6f2858cc33942f', 'user.png', 'Aktif'),
+('USR-0-4', 'Kevin GGS', 'kevin', 'kevindarkbatman@gmail.com', '123231', 'member', 'cc03e747a6afbbcbf8be7668acfebee5', 'user.png', 'Aktif'),
 ('USR-002', 'Aldo', 'aldo', 'Aldogantengsmriwing@gmail.com', '123456789', 'member', 'cc03e747a6afbbcbf8be7668acfebee5', '9200fa2ecff5393eb65f01cd3c686689.jpg', 'Aktif'),
 ('USR-004', 'capybara', 'capybara', 'test@gmail.com', '1232123', 'kepala gudang', 'cc03e747a6afbbcbf8be7668acfebee5', 'capybara1.jpg', 'Aktif'),
 ('USR-05', 'Edi', 'edi', 'edigaul@gmail.com', '123321', 'admin', 'cc03e747a6afbbcbf8be7668acfebee5', 'user.png', 'Aktif');
@@ -227,6 +248,12 @@ ALTER TABLE `barang_masuk`
   ADD PRIMARY KEY (`id_barang_masuk`);
 
 --
+-- Indexes for table `detail_barang_keluar`
+--
+ALTER TABLE `detail_barang_keluar`
+  ADD PRIMARY KEY (`id_detail`);
+
+--
 -- Indexes for table `jenis`
 --
 ALTER TABLE `jenis`
@@ -237,12 +264,6 @@ ALTER TABLE `jenis`
 --
 ALTER TABLE `satuan`
   ADD PRIMARY KEY (`id_satuan`);
-
---
--- Indexes for table `sparepart`
---
-ALTER TABLE `sparepart`
-  ADD UNIQUE KEY `Mat_Code` (`Mat_Code`);
 
 --
 -- Indexes for table `supplier`
@@ -259,6 +280,12 @@ ALTER TABLE `user`
 --
 -- AUTO_INCREMENT for dumped tables
 --
+
+--
+-- AUTO_INCREMENT for table `detail_barang_keluar`
+--
+ALTER TABLE `detail_barang_keluar`
+  MODIFY `id_detail` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `jenis`

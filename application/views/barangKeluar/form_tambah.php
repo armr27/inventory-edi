@@ -25,17 +25,17 @@
         </div>
 
         <div class="d-sm-flex  justify-content-between mb-0">
-            <div class="col-lg-8 mb-4">
+            <div class="col-lg-12 mb-4">
                 <!-- form -->
                 <div class="card border-bottom-secondary shadow mb-4">
                     <div class="card-header py-3 bg-secondary">
-                        <h6 class="m-0 font-weight-bold text-white">Form Barang Masuk</h6>
+                        <h6 class="m-0 font-weight-bold text-white">Form Barang Keluar</h6>
                     </div>
                     <div class="card-body">
                         <div class="col-lg-12">
 
-                            <!-- ID Transaksi -->
-                            <div class="form-group"><label>ID Barang Keluar</label>
+                             <!-- ID Transaksi -->
+                             <div class="form-group"><label>ID Barang Keluar</label>
                                 <input class="form-control" name="idbk" value="<?= $kode ?>" type="text" placeholder=""
                                     autocomplete="off" readonly>
                             </div>
@@ -45,38 +45,27 @@
                                 <input class="form-control" name="tgl" id="datepicker" value="<?= $tglnow ?>" type="text" placeholder=""
                                     autocomplete="off">
                             </div>
+                            
 
-                            <!-- opsi barang -->
-                            <?php if($jmlbarang > 0): ?>
-                            <div class="form-group"><label>Barang</label>
-                                <select name="barang" class="form-control chosen" onchange="ambilBarang()">
-                                    <option value="">--Pilih--</option>
-                                    <?php foreach($barang as $b): ?>
-                                    <option value="<?= $b->id_barang ?>"><?= $b->nama_barang ?></option>
-                                    <?php endforeach ?>
+                            <!-- opsi Member -->
+                            <div class="form-group"><label>Nama Anggota yang Meminjamkan barang</label>
+                            <?php if ($this->session->userdata('login_session')['level'] == 'admin') { ?>
+                                <select name="member" class="form-control chosen">
+                                    <option name="opsimember" value="">--Pilih--</option>
+                                    <?php foreach($member as $s) { ?>
+                                    <option value="<?= $s->id_user ?>"><?= $s->nama ?></option>
+                                    <?php }  ?>
                                 </select>
-                            </div>
-                            <?php else: ?>
-                            <div class="form-group"><label>Barang</label>
-                                <input type="hidden" name="barang">
-                                <div class="d-sm-flex justify-content-between">
-                                    <span class="text-danger"><i>(Belum Ada Data Barang!)</i></span>
-                                    <a href="<?= base_url() ?>barang" class="btn btn-sm btn-primary btn-icon-split">
-                                        <span class="icon text-white">
-                                            <i class="fas fa-plus"></i>
-                                        </span>
-                                    </a>
-                                </div>
-                            </div>
-                            <?php endif; ?>
-
-                            <!-- Jumlah Barang -->
-                            <div class="form-group"><label>Jumlah Keluar</label>
-                                <input class="form-control" name="jmlbarang" type="number" placeholder="">
+                                    <?php
+                                            } else { 
+                                    ?>
+                                    <input type="hidden" name="member" value="<?= ($this->session->userdata('login_session')['id_user']) ?>">
+                                    <input class="form-control" type="text" value="<?= ($this->session->userdata('login_session')['username']) ?>" readonly>
+                                    <?php } ?>
+                                
                             </div>
 
                         </div>
-
 
                         <br>
                     </div>
@@ -84,40 +73,7 @@
 
             </div>
 
-            <div class="col-lg-4 mb-4">
-                <!-- file -->
-                <div class="card border-bottom-secondary shadow mb-4">
-                    <div class="card-header py-3 bg-secondary">
-                        <h6 class="m-0 font-weight-bold text-white">Preview</h6>
-                    </div>
-                    <div class="card-body">
-                        <div class="col-lg-12">
-
-                            <center>
-                                <img id="preview" width="200px" src="<?= base_url() ?>assets/upload/barang/box.png"
-                                    alt="">
-                            </center>
-
-                            <br>
-
-                            <label><b>Nama Barang</b></label>
-                            <br>
-                            <h6 class="h6 text-gray-800" id="judul">-</h6>
-                            <!-- Divider -->
-                            <hr class="sidebar-divider">
-
-                            <label><b>Stok Barang</b></label>
-                            <br>
-                            <h6 class="h6 text-gray-800" id="stok">-</h6>
-                            <!-- Divider -->
-                            <hr class="sidebar-divider">
-
-
-                        </div>
-                    </div>
-                </div>
-
-            </div>
+            
         </div>
 
 
@@ -143,7 +99,10 @@ $('.chosen').chosen({
 });
 
 $('#datepicker').datepicker({
-    autoclose: true
+    autoclose: true,
+    endDate: '+0d',
+	todayHighlight : 'TRUE',
+	todayBtn	   : 'TRUE'
 });
 </script>
 

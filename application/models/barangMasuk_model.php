@@ -10,13 +10,7 @@ class barangMasuk_model extends ci_model{
 
     public function dataJoin()
     {
-      // $this->db->select('*');
-      // $this->db->from('barang_masuk as bm');
-      // $this->db->join('barang as b', 'b.id_barang = bm.id_barang');
-      // $this->db->join('supplier as s', 's.id_supplier = bm.id_supplier');
-      // $this->db->order_by('bm.id_barang_masuk','DESC');
-
-      return $query = $this->db->query("SELECT barang_masuk.id_barang_masuk, barang_masuk.Mat_Code, sparepart.Material_Description, user.nama, barang_masuk.jumlah_masuk, barang_masuk.tgl_masuk FROM barang_masuk INNER JOIN user ON barang_masuk.id_user = user.id_user INNER JOIN sparepart ON barang_masuk.Mat_Code = Sparepart.Mat_Code");
+      return $query = $this->db->query("SELECT * FROM barang_masuk");
     }
 
     public function dataJoinLike($tahun)
@@ -114,7 +108,10 @@ class barangMasuk_model extends ci_model{
 
     }
 
-
+    public function add_batch($data) {
+      return $this->db->insert_batch($this->table, $data);
+    }
+    
     public function buat_kode()   {
 		  $this->db->select('RIGHT(barang_masuk.id_barang_masuk,4) as kode', FALSE);
 		  $this->db->order_by('id_barang_masuk','DESC');
@@ -130,10 +127,9 @@ class barangMasuk_model extends ci_model{
 		   $kode = 1;
 		  }
 		  $kodemax = str_pad($kode, 4, "0", STR_PAD_LEFT); // angka 4 menunjukkan jumlah digit angka 0
-		  $kodejadi = "BRG-M-".$kodemax;    // hasilnya 
+		  $kodejadi = "IMP-M-".$kodemax;    // hasilnya 
 		  return $kodejadi;
 	}
-
 
 
 

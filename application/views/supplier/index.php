@@ -10,8 +10,6 @@
                 <i class="fas fa-plus"></i>
             </span>
         </a>
-
-
     </div>
 
     <div class="col-lg-12 mb-4" id="container">

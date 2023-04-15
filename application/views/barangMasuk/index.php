@@ -30,7 +30,7 @@ function tgl_indo($tanggal){
     <div class="d-sm-flex align-items-center justify-content-between mb-4">
         <h1 class="h3 mb-0 text-gray-800">Barang Masuk</h1>
         <a href="<?= base_url() ?>barangMasuk/tambah" class="btn btn-sm btn-primary btn-icon-split">
-            <span class="text text-white">Tambah Data</span>
+            <span class="text text-white">Import Data</span>
             <span class="icon text-white-50">
                 <i class="fas fa-plus"></i>
             </span>
@@ -48,13 +48,10 @@ function tgl_indo($tanggal){
                         <thead>
                             <tr>
                                 <th width="1%">No</th>
-                                <th>No.Transaksi</th>
-                                <th>Tgl Masuk</th>
-                                <th>Mat.Code Barang</th>
-                                <th>Nama Barang</th>
-                                <th>Nama Peminjam</th>
-                                <th>Jumlah Masuk</th>
-                                <th width="1%">Aksi</th>
+                                <th>Id Import Excel</th>
+                                <th>Tgl Import File</th>
+                                <th>Nama File</th>
+                                <!-- <th width="1%">Aksi</th> -->
                             </tr>
                         </thead>
                         <tbody id="tbody">
@@ -63,11 +60,8 @@ function tgl_indo($tanggal){
                                 <td><?= $no++ ?>.</td>
                                 <td><?= $bm->id_barang_masuk ?></td>
                                 <td><?= tgl_indo($bm->tgl_masuk) ?></td>
-                                <td><?= $bm->Mat_Code   ?></td>
-                                <td><?= $bm->Material_Description ?></td>
-                                <td><?= $bm->nama ?></td>
-                                <td><span class="badge badge-success"> <i class="fa fa-plus"></i> <?= $bm->jumlah_masuk ?></span></td>
-                                <td>
+                                <td><?= $bm->file   ?></td>
+                                <!-- <td>
                                     <center>
                                         <a href="<?= base_url() ?>barangMasuk/ubah/<?= $bm->id_barang_masuk ?>"
                                             class="btn btn-circle btn-success btn-sm">
@@ -79,7 +73,7 @@ function tgl_indo($tanggal){
                                             <i class="fas fa-trash"></i>
                                         </a>
                                     </center>
-                                </td>
+                                </td> -->
                             </tr>
                             <?php endforeach; ?>
                         </tbody>
@@ -101,6 +95,7 @@ function tgl_indo($tanggal){
 
 <?php if($this->session->flashdata('Pesan')): ?>
 <?= $this->session->flashdata('Pesan') ?>
+<?php unset($_SESSION['Pesan'])  ?>
 <?php else: ?>
 <script>
 $(document).ready(function() {

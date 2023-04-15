@@ -17,6 +17,9 @@ $route['satuan'] = 'Satuan/index';
 $route['barang'] = 'Barang/index';
 $route['barang_masuk'] = 'barangMasuk/index';
 $route['barang_keluar'] = 'barangKeluar/index';
+$route['barang_keluar/detail/(:any)'] = 'barangKeluar/detail';
+$route['user/import']      = 'Upload/import';
+$route['barangKeluar/getStok'] = 'barangKeluar/getStok';
 
 //laporan
 $route['lap_barang_masuk'] = 'barangMasuk/laporan';

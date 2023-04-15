@@ -135,6 +135,7 @@ if (!$this->session->has_userdata('login_session')) {
                         <!-- Divider -->
                         <hr class="sidebar-divider d-none d-md-block">
 
+                        <!-- Transaksi Admin -->
                         <?php if ($this->session->userdata('login_session')['level'] == 'admin' ) : ?>
 
                             <!-- Heading -->
@@ -167,6 +168,38 @@ if (!$this->session->has_userdata('login_session')) {
 
                             <?php endif; ?>
 
+                            <!-- transaksi Member -->
+                        <?php if ($this->session->userdata('login_session')['level'] == 'member') : ?>
+
+                            <!-- Heading -->
+                            <div class="sidebar-heading">
+                                Transaksi
+                            </div>
+
+                            <!-- Nav Item - Pages Collapse Menu -->
+                            <?php if ($title == 'Barang Masuk' or $title == 'Barang Keluar') : ?>
+                                <li class="nav-item active">
+                                <?php else : ?>
+                                <li class="nav-item">
+                                <?php endif; ?>
+                                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages1">
+                                    <i class="fas fa-fw fa-random"></i>
+                                    <span>Transaksi</span>
+                                </a>
+                                <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                                    <div class="bg-white py-2 collapse-inner rounded">
+                                        <h6 class="collapse-header">Data Transaksi</h6>
+                                        <a class="collapse-item" href="<?= base_url() ?>barang_keluar"><b>Barang Keluar</b></a>
+                                    </div>
+
+                                </div>
+                                </li>
+
+                                <!-- Divider -->
+                                <hr class="sidebar-divider d-none d-md-block">
+
+                            <?php endif; ?>
+
                             <?php if ($this->session->userdata('login_session')['level'] == 'admin' || $this->session->userdata('login_session')['level'] == 'kepala gudang') : ?>
 
                                 <!-- Heading -->
@@ -186,7 +219,6 @@ if (!$this->session->has_userdata('login_session')) {
                                     <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                                         <div class="bg-white py-2 collapse-inner rounded">
                                             <h6 class="collapse-header">Laporan</h6>
-                                            <a class="collapse-item" href="<?= base_url() ?>lap_barang_masuk"><b>Barang Masuk</b></a>
                                             <a class="collapse-item" href="<?= base_url() ?>lap_barang_keluar"><b>Barang Keluar</b></a>
                                         </div>
 
@@ -239,34 +271,8 @@ if (!$this->session->has_userdata('login_session')) {
                         <i class="fa fa-bars"></i>
                     </button>
 
-                    <!-- Nama Aplikasi 
-                    <h1 class="h3 mb-0 text-gray-800"><b>PERPUSWEB</b></h1>
-                    -->
-
                     <!-- Topbar Navbar -->
                     <ul class="navbar-nav ml-auto">
-
-                        <!-- Nav Item - Search Dropdown (Visible Only XS) -->
-                        <li class="nav-item dropdown no-arrow d-sm-none">
-                            <a class="nav-link dropdown-toggle" href="#" id="searchDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <i class="fas fa-search fa-fw"></i>
-                            </a>
-                            <!-- Dropdown - Messages -->
-                            <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in" aria-labelledby="searchDropdown">
-                                <form class="form-inline mr-auto w-100 navbar-search">
-                                    <div class="input-group">
-                                        <input type="text" class="form-control bg-light border-0 small" placeholder="Search for..." aria-label="Search" aria-describedby="basic-addon2">
-                                        <div class="input-group-append">
-                                            <button class="btn btn-primary" type="button">
-                                                <i class="fas fa-search fa-sm"></i>
-                                            </button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                        </li>
-
-                        </li>
 
                         <div class="topbar-divider d-none d-sm-block"></div>
 

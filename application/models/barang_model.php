@@ -4,9 +4,9 @@ class barang_model extends ci_model{
 //set nama tabel yang akan kita tampilkan datanya
 var $table = 'sparepart';
 //set kolom order, kolom pertama saya null untuk kolom edit dan hapus
-var $column_order = array(null, 'Mat_Code', 'Material_Description', 'UOM', 'Location','Stock', null);
+var $column_order = array(null, 'Mat_Code', 'Material_Description', 'UOM', 'Location','Stock','Sloc','Batch', null);
 
-var $column_search = array('Mat_Code', 'Material_Description', 'UOM', 'Location','Stock');
+var $column_search = array('Mat_Code', 'Material_Description', 'UOM', 'Location','Stock','Sloc','Batch');
 // default order 
 var $order = array('Mat_Code' => 'asc');
 

@@ -65,7 +65,8 @@
                             <?php if (($this->session->userdata('login_session')['level'] == 'admin')){ ?>
                                 <select name="level" class="form-control">
                             <?php } else { ?>
-                                <select name="level" class="form-control" name="nip" disabled>
+                                <select class="form-control" disabled>
+                                    <input type="hidden" name="level" value="<?= $u->level ?>" />
                                 <?php } ?>
                                     <option value="admin" 
                                     <?php if($u->level == "admin"): ?> Selected <?php endif; ?> >Admin</option>
@@ -81,13 +82,14 @@
                              <?php if (($this->session->userdata('login_session')['level'] == 'admin')){ ?>
                                 <select name="status" class="form-control">
                             <?php } else { ?>
-                                <select name="status" class="form-control" disabled>
+                                <select class="form-control" disabled>
                                 <?php } ?>
                                     <option value="Aktif" 
                                     <?php if($u->status == "Aktif"): ?> Selected <?php endif; ?> >Aktif</option>
                                     <option value="Tidak Aktif" 
                                     <?php if($u->status == "Tidak Aktif"): ?> Selected <?php endif; ?> >Tidak Aktif</option>
                                 </select>
+                                <input type="hidden" name="status" value="<?= $u->status ?>" />
                             </div>
 
                             

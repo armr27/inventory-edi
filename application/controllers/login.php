@@ -37,7 +37,7 @@ class Login extends CI_Controller
 
 		$cek = $this->login_model->cek_login($where, 'user')->num_rows();
 		$data = $this->login_model->cek_login($where, 'user')->row_array();
-		$cekEmail = $this->db->query("SELECT * FROM `user` WHERE status='Tidak Aktif'")->num_rows();
+		$cekEmail = $this->db->query("SELECT * FROM `user` WHERE status='Tidak Aktif' AND username='$where[username]' AND password='$where[password]'")->num_rows();
 		if ($cek > 0 ) {
 			if ($cekEmail == 0){
 			$userdata = [
