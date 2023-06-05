@@ -48,7 +48,7 @@
                             
 
                             <!-- opsi Member -->
-                            <div class="form-group"><label>Nama Anggota yang Meminjamkan barang</label>
+                            <div class="form-group"><label>Nama Anggota yang Menggunakan barang</label>
                             <?php if ($this->session->userdata('login_session')['level'] == 'admin') { ?>
                                 <select name="member" class="form-control chosen">
                                     <option name="opsimember" value="">--Pilih--</option>

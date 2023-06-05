@@ -24,10 +24,10 @@ class Home extends CI_Controller {
 		$level = $this->session->userdata('login_session')['level'];
 		// Logic buat nampilin barang keluar
 		if ($level == 'admin' || $level == 'kepala gudang' ) {
-			$data['bk5Terakhir'] = $this->db->query("SELECT * FROM barang_keluar limit 5")->result();
+			$data['bk5Terakhir'] = $this->db->query("SELECT * FROM barang_keluar ORDER BY tgl_keluar DESC limit 5 ")->result();
 		} else if ($level == 'member') { 
 			$id_user = $this->session->userdata('login_session')['id_user'];
-			$data['bk5Terakhir'] = $this->db->query("SELECT * FROM barang_keluar WHERE id_user ='$id_user' limit 5")->result();
+			$data['bk5Terakhir'] = $this->db->query("SELECT * FROM barang_keluar WHERE id_user ='$id_user' ORDER BY tgl_keluar limit 5")->result();
 		}
 		$data['yearnow']=date('Y', strtotime('+0 year'));
 		$data['previousyear']=date('Y', strtotime('-1 year'));
@@ -36,6 +36,7 @@ class Home extends CI_Controller {
 		$this->load->view('templates/header', $data);
 		$this->load->view('home/index');
 		$this->load->view('templates/footer');
+
 	}
 
 	public function getTotalTransaksi()
@@ -43,7 +44,6 @@ class Home extends CI_Controller {
 		$tahun = $this->input->post('tahun');
 
 		// Logic buat nampilin barang keluar
-		$level = $this->session->userdata('login_session')['level'];
 		if ($this->session->userdata('login_session')['level'] == 'admin') {
 			$jmlBK = $this->db->query("SELECT * FROM barang_keluar")->num_rows();
 		} else if ($this->session->userdata('login_session')['level'] == 'member') { 

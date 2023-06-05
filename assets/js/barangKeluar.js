@@ -64,7 +64,7 @@ function selesai(id) {
     var base_url = $('#baseurl').val();
 
     swal.fire({
-        title: "Apakah Anda Yakin Proses Peminjaman Telah Selesai?",
+        title: "Apakah Anda Yakin Proses Telah Selesai?",
         icon: "warning",
         closeOnClickOutside: false,
         showCancelButton: true,

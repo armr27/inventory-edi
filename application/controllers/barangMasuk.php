@@ -166,7 +166,7 @@ class BarangMasuk extends CI_Controller {
       $spreadsheet = $reader->load($inputfileName);
       $sheet = $spreadsheet->getSheet(0);
 	  $count_Rows = 0;
-	  $this->db->query("TRUNCATE TABLE Sparepart");
+	  $this->db->query("TRUNCATE TABLE sparepart");
 	  foreach ($sheet->getRowIterator() as $row) {
 		if ($count_Rows > 0 ){
 		$Mat_code = $spreadsheet->getActiveSheet()->getCell('B'.$row->getRowIndex());

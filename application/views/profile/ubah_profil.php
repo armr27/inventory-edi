@@ -66,7 +66,6 @@
                                 <select name="level" class="form-control">
                             <?php } else { ?>
                                 <select class="form-control" disabled>
-                                    <input type="hidden" name="level" value="<?= $u->level ?>" />
                                 <?php } ?>
                                     <option value="admin" 
                                     <?php if($u->level == "admin"): ?> Selected <?php endif; ?> >Admin</option>
@@ -75,6 +74,7 @@
                                     <option value="member" 
                                     <?php if($u->level == "member"): ?> Selected <?php endif; ?> >member</option>
                                 </select>
+                                <input type="hidden" name="level" value="<?= $u->level ?>" />
                             </div>
 
                              <!-- Status -->

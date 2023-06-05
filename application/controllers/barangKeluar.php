@@ -32,7 +32,7 @@ class BarangKeluar extends CI_Controller {
 	{
 		$kode = $this->uri->segment('3');
 		$data['title'] = 'Barang Keluar';
-		$data['bk'] = $this->db->query("SELECT * FROM detail_barang_keluar INNER JOIN sparepart ON detail_barang_keluar.mat_code = sparepart.Mat_Code WHERE id_barang_keluar = '$kode'")->result();
+		$data['bk'] = $this->db->query("SELECT * FROM detail_barang_keluar INNER JOIN sparepart ON detail_barang_keluar.mat_code = sparepart.Mat_Code WHERE id_barang_keluar = '$kode' ")->result();
 		$data['progress'] = $this->db->query("SELECT progress FROM barang_keluar WHERE id_barang_keluar = '$kode'")->result();
 		$data['barang'] = $this->db->query("SELECT Mat_Code, Material_Description FROM sparepart")->result();
 		$this->load->view('templates/header', $data);
@@ -45,10 +45,22 @@ class BarangKeluar extends CI_Controller {
 		$data['title'] = 'Laporan Barang Keluar';
 		$tglawal = $this->input->post('tglawal');
 		$tglakhir = $this->input->post('tglakhir');
+		$bulan = $this->input->post('bulan');
+		$tahun = $this->input->post('tahun');
 		if ($tglawal && $tglakhir ){
 			$data['tglawal'] = $tglawal;
             $data['tglakhir'] = $tglakhir;
 			$data['laporan'] = $this->barangKeluar_model->lapdata($tglawal, $tglakhir)->result();
+		} else if ($bulan) {
+				$data['bulan'] = $bulan;
+				$pecahkan = explode('-', $bulan);
+				$tglbulan = (int)$pecahkan[1];
+				$tgltahun = (int)$pecahkan[0];
+				$data['laporan'] = $this->db->query("SELECT barang_keluar.*, detail_barang_keluar.*, user.nama, sparepart.Material_Description FROM barang_keluar INNER JOIN user ON barang_keluar.id_user = user.id_user INNER JOIN detail_barang_keluar ON barang_keluar.id_barang_keluar = detail_barang_keluar.id_barang_keluar INNER JOIN sparepart ON detail_barang_keluar.mat_code = sparepart.Mat_Code WHERE barang_keluar.progress = 'Selesai' AND YEAR(barang_keluar.tgl_keluar) = $tgltahun AND MONTH(barang_keluar.tgl_keluar) = $tglbulan")->result();
+		} else if ($tahun) {
+				$data['tahun'] = $tahun;
+				$tahun = (int)$tahun;
+				$data['laporan'] = $this->db->query("SELECT barang_keluar.*, detail_barang_keluar.*, user.nama, sparepart.Material_Description FROM barang_keluar INNER JOIN user ON barang_keluar.id_user = user.id_user INNER JOIN detail_barang_keluar ON barang_keluar.id_barang_keluar = detail_barang_keluar.id_barang_keluar INNER JOIN sparepart ON detail_barang_keluar.mat_code = sparepart.Mat_Code WHERE barang_keluar.progress = 'Selesai' AND YEAR(barang_keluar.tgl_keluar) = $tahun ")->result();
 		} else {
 			$data['laporan'] = $this->db->query("SELECT barang_keluar.*, detail_barang_keluar.*, user.nama, sparepart.Material_Description FROM barang_keluar INNER JOIN user ON barang_keluar.id_user = user.id_user INNER JOIN detail_barang_keluar ON barang_keluar.id_barang_keluar = detail_barang_keluar.id_barang_keluar INNER JOIN sparepart ON detail_barang_keluar.mat_code = sparepart.Mat_Code WHERE barang_keluar.progress = 'Selesai'")->result();
 		}
@@ -111,7 +123,7 @@ class BarangKeluar extends CI_Controller {
 		<script>
 		$(document).ready(function() {
 			swal.fire({
-				title: "Peminjaman Barang Berhasil Dilakukan",
+				title: "Pengambilan Barang Berhasil Dilakukan",
 				icon: "success",
 				confirmButtonColor: "#4e73df",
 			});

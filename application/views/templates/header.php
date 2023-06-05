@@ -173,7 +173,7 @@ if (!$this->session->has_userdata('login_session')) {
 
                             <!-- Heading -->
                             <div class="sidebar-heading">
-                                Transaksi
+                                Peminjaman Barang
                             </div>
 
                             <!-- Nav Item - Pages Collapse Menu -->
@@ -182,17 +182,11 @@ if (!$this->session->has_userdata('login_session')) {
                                 <?php else : ?>
                                 <li class="nav-item">
                                 <?php endif; ?>
-                                <a class="nav-link" href="#" data-toggle="collapse" data-target="#collapsePages1" aria-expanded="true" aria-controls="collapsePages1">
+                                
+                                <a class="nav-link" href="<?= base_url() ?>barang_keluar">
                                     <i class="fas fa-fw fa-random"></i>
-                                    <span>Transaksi</span>
-                                </a>
-                                <div id="collapsePages1" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                                    <div class="bg-white py-2 collapse-inner rounded">
-                                        <h6 class="collapse-header">Data Transaksi</h6>
-                                        <a class="collapse-item" href="<?= base_url() ?>barang_keluar"><b>Barang Keluar</b></a>
-                                    </div>
-
-                                </div>
+                                            <span>Barang Keluar</span>
+                                        </a>
                                 </li>
 
                                 <!-- Divider -->
@@ -219,6 +213,7 @@ if (!$this->session->has_userdata('login_session')) {
                                     <div id="collapsePages2" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
                                         <div class="bg-white py-2 collapse-inner rounded">
                                             <h6 class="collapse-header">Laporan</h6>
+                                            <a class="collapse-item" href="<?= base_url() ?>lap_barang"><b>Barang</b></a>
                                             <a class="collapse-item" href="<?= base_url() ?>lap_barang_keluar"><b>Barang Keluar</b></a>
                                         </div>
 

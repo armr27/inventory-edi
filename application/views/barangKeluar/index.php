@@ -51,7 +51,7 @@ function tgl_indo($tanggal){
                                 <th>No.Transaksi</th>
                                 <th>Tgl Keluar</th>
                                 <th>Nama Member</th>
-                                <th>Status Peminjaman</th>
+                                <th>Status</th>
                                 <th width="1%">Aksi</th>
                             </tr>
                         </thead>

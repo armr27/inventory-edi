@@ -1,81 +1,43 @@
 <?php
-
-
 function tgl_indo($tanggal)
 {
-
   $bulan = array(
-
     1 =>   'Januari',
-
     'Februari',
-
     'Maret',
-
     'April',
-
     'Mei',
-
     'Juni',
-
     'Juli',
-
     'Agustus',
-
     'September',
-
     'Oktober',
-
     'November',
-
     'Desember'
-
   );
 
   $pecahkan = explode('-', $tanggal);
-
-
-
   // variabel pecahkan 0 = tanggal
-
   // variabel pecahkan 1 = bulan
-
   // variabel pecahkan 2 = tahun
-
-
-
   return $pecahkan[2] . ' ' . $bulan[(int)$pecahkan[1]] . ' ' . $pecahkan[0];
 }
 
 function bulan_indo($tglbulan)
 {
-
   $nama_bulan = array(
-
     1 =>   'Januari',
-
     'Februari',
-
     'Maret',
-
     'April',
-
     'Mei',
-
     'Juni',
-
     'Juli',
-
     'Agustus',
-
     'September',
-
     'Oktober',
-
     'November',
-
     'Desember'
-
   );
 
   $pecahkan = explode('-', $tglbulan);
@@ -169,18 +131,9 @@ function bulan_indo($tglbulan)
                                     <input name="imageField" type="image" src="<?= base_url("assets/icon/R.png") ?>" width="120" height="30" >
                                 </div>
                             </td>
-                            <!-- <td align="left">
-                                <div align="center" class="style4">YAYASAN PENDIDIKAN MAKMUR RIDAR (YPMR)</div>
-                            </td>
-                            <td align="left">&nbsp;</td> -->
                         </tr>
                         <tr align="center">
-                            <td width="503" align="left">
-
-                                <!-- <div align="center"><span class="style1">SEKOLAH TINGGI MANAJEMEN INFORMATIKA DAN KOMPUTER</span></div>
-                             -->
-                             
-                            </td>
+                            <td width="503" align="left"> </td>
                         </tr>
                         <tr align="center">
                             <td align="left">
@@ -219,28 +172,18 @@ function bulan_indo($tglbulan)
                             </td>
                         </tr>
                         <tr align="center">
-                        <?php if ($tglbulan !== "" && $tgltahun == "" && $tglawal == "" && $tglakhir == "") { ?>
+                        <?php if ($cari == null) { ?>
                             <td colspan="3" align="left">
-                                <div align="center" class="tglfilter">Berikut Laporan Menyeluruh pada Bulan <?= bulan_indo($tglbulan);?>   </div>
-                                <div align="left"></div>
-                            </td>
-                        <?php } else if ($tglbulan == "" && $tgltahun !== "" && $tglawal == "" && $tglakhir == "") { ?>
-                            <td colspan="3" align="left">
-                                <div align="center" class="tglfilter">Berikut Laporan Menyeluruh pada Tahun <?= $tgltahun ; ?>   </div>
-                                <div align="left"></div>
-                            </td>
-                          <?php } else if ($tglawal == '' || $tglakhir == '' ){ ?>
-                            <td colspan="3" align="left">
-                                <div align="center" class="tglfilter">Semua</div>
+                                <div align="center" class="tglfilter">Berikut Laporan Barang Menyeluruh </div>
                                 <div align="left"></div>
                             </td>
 
                             <?php } else { ?>
-                            <td colspan="3" align="left">
-                                <div align="center" class="tglfilter">Berikut Laporan dimulai dari tanggal <?= tgl_indo($tglawal);?>  hingga <?= tgl_indo($tglakhir) ?>  </div>
-                                <div align="left"></div>
-                            </td>
-                              <?php } ?>
+                                <td colspan="3" align="left">
+                                    <div align="center" class="tglfilter">Berikut Laporan Barang : <?= $cari ?>  </div>
+                                    <div align="left"></div>
+                                </td>
+                            <?php } ?>
                         </tr>
                     </table>
                     <table border="1" id="customers" class="keliling" width="650" align="center">
@@ -248,9 +191,11 @@ function bulan_indo($tglbulan)
                         <th width = "1%">No</th>
                         <th width = "10%">Mat Code</th>
                         <th width = "20%">Material Description</th>
-                        <th width = "10%">Tanggal Keluar</th>
-                        <th width = "15%">Nama Pengguna</th>
-                        <th width = "6%">Jumlah Keluar</th>
+                        <th width = "10%">UOM</th>
+                        <th width = "15%">Location</th>
+                        <th width = "6%">Stock</th>
+                        <th width = "6%">Sloc</th>
+                        <th width = "6%">Batch</th>
                       </tr>
 
     <?php
@@ -258,16 +203,15 @@ function bulan_indo($tglbulan)
     foreach ($data as $d) { ?>
       <tr class="batas2" align="center">
         <td><?= $no++ ?></td>
-        <td><?= $d->mat_code ?></td>
+        <td><?= $d->Mat_Code ?></td>
         <td><?= $d->Material_Description ?></td>
-        <td><?= tgl_indo($d->tgl_keluar)  ?></td>
-        <td><?= $d->nama ?></td>
-        <td><?= $d->jumlah_keluar ?></td>
+        <td><?= $d->UOM ?></td>
+        <td><?= $d->Location ?></td>
+        <td><?= $d->Stock ?></td>
+        <td><?= $d->Sloc ?></td>
+        <td><?= $d->Batch ?></td>
       </tr>
-
     <?php } ?>
-
-
   </table>
                     <br>
                     <br>

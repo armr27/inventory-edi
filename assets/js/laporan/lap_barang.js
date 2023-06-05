@@ -35,23 +35,14 @@ function validasi(judul, status) {
 
 
 function refresh() {
-
     var t = $('#dtHorizontalExample').DataTable();
-
     t.ajax.reload();
-
 }
 
 
 
 function reset() {
-
-    $("[name='tglawal']").val("");
-    $("[name='tglakhir']").val("");
-    $("[name='bulan']").val("");
-    $("[name='tahun']").val("");
-
-
+    $("[name='cari']").val("");
 }
 
 

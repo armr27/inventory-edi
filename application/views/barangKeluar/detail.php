@@ -195,6 +195,7 @@ $(document).ready(function() {
 </script>
 <script>
         function changeBarang(value) {
+        console.log(value);
         $.ajax({
         url: "<?= base_url('barangKeluar/getStok') ?>",
         type: "GET",
@@ -204,8 +205,11 @@ $(document).ready(function() {
         dataType: "JSON",
         success: function(data) {
             $('#stok').val(data.data[0].Stock);
-    }
-        });
+        },
+        error: function(jqXHR, textStatus, errorThrown) {
+            console.log(jqXHR);
+        }
+    });
 };
 
 function validateDetail() {

@@ -43,6 +43,7 @@ public function ajax_list()
 	foreach ($list as $Data_sparepart) {
 		$no++;
 		$row = array();
+		//row pertama akan kita gunakan untuk btn edit dan delete
 		$row[] = $no;
 		$row[] = $Data_sparepart->Mat_Code;
 		$row[] = $Data_sparepart->Material_Description;
@@ -72,8 +73,21 @@ public function ajax_list()
 }
 
 
-
-
+// function untuk menampilkan laporan barang
+	public function laporan()
+	{
+		$data['title'] = 'Laporan Barang';
+		$cari = $this->input->post('cari');
+		if ($cari !== null){
+			$data['laporan'] = $this->db->query("SELECT * FROM Sparepart WHERE Mat_Code LIKE '%$cari%' OR Material_Description LIKE '%$cari%' OR UOM LIKE '%$cari%' OR Location LIKE '%$cari%' OR Sloc LIKE '%$cari%' OR Batch LIKE '%$cari%'")->result();
+		} else {
+			$data['laporan'] = $this->db->query("SELECT * FROM Sparepart")->result();
+		}
+		$data['cari'] = $cari;
+		$this->load->view('templates/header', $data);
+		$this->load->view('barang/laporan');
+		$this->load->view('templates/footer');
+	}
 
 
     public function tambah()

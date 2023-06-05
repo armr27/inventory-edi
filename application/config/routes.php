@@ -24,6 +24,7 @@ $route['barangKeluar/getStok'] = 'barangKeluar/getStok';
 //laporan
 $route['lap_barang_masuk'] = 'barangMasuk/laporan';
 $route['lap_barang_keluar'] = 'barangKeluar/laporan';
+$route['lap_barang'] = 'barang/laporan';
 
 
 

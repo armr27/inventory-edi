@@ -100,8 +100,6 @@ class Profile extends CI_Controller {
 			'foto'=>$ganti
 				);
 
-		var_dump($data);
-		die;
 		$where = array('id_user'=>$kode);
 	  
 		  $this->user_model->ubah_data($where, $data, 'user');

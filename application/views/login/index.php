@@ -65,7 +65,7 @@
                                         <input type="password" class="form-control form-control-user"
                                             id="pwd" name="pwd" placeholder="Password">
                                     </div>
-                                    <a href="#" onclick="proses_login()" id="login"
+                                    <a href="" onclick="proses_login()" id="login"
                                         class="btn btn-primary btn-user btn-block shadow">
                                         Login
                                     </a>

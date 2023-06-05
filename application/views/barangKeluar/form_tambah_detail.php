@@ -48,7 +48,7 @@
                             
 
                             <!-- opsi Member -->
-                            <div class="form-group"><label>Nama Anggota yang Meminjamkan barang</label>
+                            <div class="form-group"><label>Nama Anggota yang Menggunakan barang</label>
                                 <select name="member" class="form-control chosen">
                                     <option name="opsimember" value="">--Pilih--</option>
                                     <?php foreach($member as $s): ?>

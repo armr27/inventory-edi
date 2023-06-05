@@ -103,9 +103,7 @@ $('#datepicker').datepicker({
 
 });
 </script>
-
 <?php if($this->session->flashdata('Pesan')): ?>
-
 <?php else: ?>
 <script>
 $(document).ready(function() {

@@ -40,14 +40,6 @@ if ($this->session->has_userdata('login_session')) {
             $(".spinner").fadeOut("slow");
         });
     </script>
-    <style>
-        .background-login{
-        background: url("../../Icon/4016257.jpg");
-        background-position: center;
-        background-size: contain;
-        background-repeat: no-repeat;
-        }
-    </style>
 
 </head>
 
