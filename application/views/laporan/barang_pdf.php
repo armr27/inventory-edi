@@ -167,7 +167,7 @@ function bulan_indo($tglbulan)
                         </tr>
                         <tr align="center">
                             <td colspan="3" align="left">
-                                <div align="center" class="style1">LAPORAN BARANG KELUAR</div>
+                                <div align="center" class="style1">LAPORAN BARANG</div>
                                 <div align="left"></div>
                             </td>
                         </tr>

@@ -71,9 +71,9 @@ class Laporan extends CI_Controller
   {
     $cari = $this->input->get('cari');
     if ($cari){
-			$data['data'] = $this->db->query("SELECT * FROM Sparepart WHERE Mat_Code LIKE '%$cari%' OR Material_Description LIKE '%$cari%' OR UOM LIKE '%$cari%' OR Location LIKE '%$cari%' OR Sloc LIKE '%$cari%' OR Batch LIKE '%$cari%'")->result();
+			$data['data'] = $this->db->query("SELECT * FROM sparepart WHERE Mat_Code LIKE '%$cari%' OR Material_Description LIKE '%$cari%' OR UOM LIKE '%$cari%' OR Location LIKE '%$cari%' OR Sloc LIKE '%$cari%' OR Batch LIKE '%$cari%'")->result();
 		} else {
-			$data['data'] = $this->db->query("SELECT * FROM Sparepart")->result();
+			$data['data'] = $this->db->query("SELECT * FROM sparepart")->result();
 		}
     $data['judul'] = 'Laporan Barang';
     $data['cari'] = $cari;
